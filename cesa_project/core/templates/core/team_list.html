@@ -1,0 +1,89 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<style>
+    .team-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(13, 110, 253, 0.1);
+    }
+
+    .team-photo {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%; /* Makes the photo circular */
+        border: 4px solid #0d6efd; /* Blue border around the photo */
+        margin-bottom: 1.5rem;
+    }
+
+    .team-name {
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: #ffffff;
+    }
+
+    .team-position {
+        color: #0d6efd; /* Highlight color for the position */
+        font-weight: 500;
+        margin-top: -5px;
+        margin-bottom: 1rem;
+    }
+
+    .social-links a {
+        color: #adb5bd;
+        font-size: 1.5rem;
+        margin: 0 0.5rem;
+        transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+        color: #ffffff;
+    }
+</style>
+
+<div class="container section">
+    <h1 class="section-title">Meet Our Team</h1>
+    <p class="lead text-center text-secondary" style="margin-top: -50px; margin-bottom: 60px;">The innovators and leaders driving our community forward.</p>
+
+    <div class="row gy-5">
+
+        {% for member in team_members %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="team-card">
+                <img src="{{ member.photo.url }}" class="team-photo" alt="Photo of {{ member.name }}">
+                <h3 class="team-name">{{ member.name }}</h3>
+                <p class="team-position">{{ member.position }}</p>
+                
+                <div class="social-links">
+                    {% if member.linkedin_link %}
+                    <a href="{{ member.linkedin_link }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    {% endif %}
+                    {% if member.github_link %}
+                    <a href="{{ member.github_link }}" target="_blank"><i class="fab fa-github"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <!-- This block will display ONLY if there are no team members in the database -->
+        <div class="col-12">
+            <div class="text-center p-5" style="background: rgba(255, 255, 255, 0.05); border-radius: 15px;">
+                <h2 class="display-4 fw-bold">The Team is Assembling!</h2>
+                <p class="lead text-secondary mt-3">Our brilliant members will be revealed soon. Stay tuned!</p>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

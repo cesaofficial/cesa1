@@ -1,0 +1,165 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* --- Hero Section with Aurora Background --- */
+    .hero-section {
+        position: relative; /* Needed for the background element */
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden; /* Hide overflowing parts of the background */
+    }
+
+    .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 20% 20%, hsla(217, 100%, 50%, 0.3), transparent 30%),
+                    radial-gradient(circle at 80% 70%, hsla(190, 100%, 50%, 0.2), transparent 40%);
+        animation: aurora 15s linear infinite;
+        z-index: -1;
+    }
+
+    @keyframes aurora {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .hero-content h1 {
+        font-size: clamp(6rem, 20vw, 15rem);
+        font-weight: 800;
+        color: #0d6efd; /* Bootstrap blue */
+    }
+
+    .hero-content p {
+        font-size: 1.25rem;
+        color: #adb5bd; /* Muted text color */
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* --- Glassmorphism Card Style --- */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 2.5rem;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        height: 100%;
+    }
+
+    .glass-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(13, 110, 253, 0.5); /* Highlight with blue on hover */
+    }
+
+    .glass-card .icon {
+        font-size: 2.5rem;
+        color: #0d6efd;
+        margin-bottom: 1rem;
+    }
+
+    /* --- Final Connect Section Styles --- */
+    .social-card {
+        text-align: center;
+        text-decoration: none;
+        color: #e0e0e0;
+    }
+    .social-card .glass-card {
+        padding: 2rem;
+    }
+    .social-icon { font-size: 3rem; }
+    .insta-icon { color: #E4405F; }
+    .linkedin-icon { color: #0A66C2; }
+</style>
+
+<!-- HERO SECTION -->
+<div class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+        <h1>CESA</h1>
+        <p>Welcome to the Computer Engineering Students Association. The hub for innovation, collaboration, and growth.</p>
+    </div>
+</div>
+
+<!-- ABOUT SECTION -->
+<div id="about" class="container section">
+    <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+            <h2 class="section-title text-start mb-4">A Community <span class="highlight">Built For The Future.</span></h2>
+            <p class="text-secondary fs-5">CESA is more than just a student committee; it's a launchpad for aspiring engineers. We are a passionate community dedicated to exploring the vast world of computer science and engineering.</p>
+            <p class="text-secondary fs-5">Our goal is to provide a platform where students can learn from industry experts, collaborate on groundbreaking projects, and build a network that lasts a lifetime.</p>
+        </div>
+        <div class="col-lg-6">
+            <div class="glass-card">
+                 <!-- You can place an image inside the card if you like -->
+                <h4 class="fw-bold">Our Mission</h4>
+                <p class="text-secondary">To bridge the gap between academic theory and real-world application, empowering every member with the skills, confidence, and connections to excel in their careers.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DOMAINS SECTION -->
+<div id="domains" class="section">
+    <div class="container">
+        <h2 class="section-title">What We Focus On</h2>
+        <div class="row gy-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="glass-card">
+                    <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                    <h4 class="fw-bold">Workshops & Events</h4>
+                    <p class="text-secondary">Hands-on sessions on cutting-edge technologies like AI/ML, Web3, and Cloud Computing.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="glass-card">
+                    <div class="icon"><i class="fas fa-trophy"></i></div>
+                    <h4 class="fw-bold">Hackathons & Competitions</h4>
+                    <p class="text-secondary">Fostering innovation and teamwork through competitive and collaborative real-world problem-solving.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="glass-card">
+                    <div class="icon"><i class="fas fa-network-wired"></i></div>
+                    <h4 class="fw-bold">Industry Networking</h4>
+                    <p class="text-secondary">Creating a supportive network through tech talks, mentorship programs, and alumni connections.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONNECT WITH US SECTION -->
+<div id="connect" class="container section">
+    <h2 class="section-title">Join Our Community</h2>
+    <div class="row g-4 justify-content-center">
+        <!-- Instagram -->
+        <div class="col-md-4">
+             <a href="https://www.instagram.com/your-insta/" target="_blank" class="social-card">
+                <div class="glass-card">
+                    <i class="fab fa-instagram social-icon insta-icon"></i>
+                    <h5 class="mt-3 fw-bold">Follow on Instagram</h5>
+                </div>
+            </a>
+        </div>
+        <!-- LinkedIn -->
+        <div class="col-md-4">
+            <a href="https://www.linkedin.com/company/your-linkedin/" target="_blank" class="social-card">
+                <div class="glass-card">
+                    <i class="fab fa-linkedin social-icon linkedin-icon"></i>
+                    <h5 class="mt-3 fw-bold">Connect on LinkedIn</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
