@@ -27,12 +27,21 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-# We will add our Vercel URL here later through an environment variable
+# --- ALLOWED HOSTS ---
+# This configuration is robust and recommended for Vercel deployments.
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+]
+
+# Add the Vercel app URL and a wildcard for all preview deployments.
+# This is more reliable than relying on a single environment variable.
 VERCEL_URL = os.environ.get('VERCEL_URL')
 if VERCEL_URL:
-    ALLOWED_HOSTS.append(VERCEL_URL.split('//')[-1])
-# Application definition
+    ALLOWED_HOSTS.append(VERCEL_URL)
+
+# Add a wildcard to trust all subdomains of vercel.app
+ALLOWED_HOSTS.append('.vercel.app')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
