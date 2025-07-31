@@ -1,4 +1,13 @@
 #!/bin/bash
+
+# Exit on error
+set -o errexit
+
+# Install dependencies
 pip install -r requirements.txt
-python manage.py collectstatic --noinput
+
+# Collect static files
+python manage.py collectstatic --no-input
+
+# Run database migrations (optional but good practice)
 python manage.py migrate
