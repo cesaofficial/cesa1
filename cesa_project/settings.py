@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
+    #'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     #installed apps
     'core',
@@ -145,9 +145,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles' # Vercel will collect static files here
 
 # This tells Django where to find your static files in development
-STATICFILES_DIRS = [
+'''STATICFILES_DIRS = [
     BASE_DIR / 'static',
-]
+]'''
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

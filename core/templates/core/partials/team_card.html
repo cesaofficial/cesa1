@@ -1,0 +1,27 @@
+<!-- templates/core/partials/team_card_pro.html (The New Design) -->
+<div class="team-card-final">
+    <img src="{{ member.photo.url }}" alt="Photo of {{ member.name }}" class="team-card-final-photo">
+    <div class="team-card-final-body">
+        <h5 class="team-card-final-name">{{ member.name }}</h5>
+        <p class="team-card-final-title">{{ member.title }}</p>
+        <div class="team-card-final-socials">
+            
+            <!-- LinkedIn Icon -->
+            {% if member.linkedin_link %}
+                <a href="{{ member.linkedin_link }}" target="_blank" class="social-link linkedin" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            {% endif %}
+
+            <!-- Instagram Icon -->
+            {% if member.instagram_link %}
+                <a href="{{ member.instagram_link }}" target="_blank" class="social-link instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            {% endif %}
+            
+            <!-- You can add other icons here, like GitHub -->
+            
+        </div>
+    </div>
+</div>
