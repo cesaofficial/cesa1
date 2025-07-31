@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
+    # 'whitenoise.runserver_nostatic', # <<< THIS LINE HAS BEEN REMOVED
     'django.contrib.staticfiles',
     #installed apps
     'core',
@@ -142,7 +142,7 @@ USE_TZ = True
 
 # Find the STATIC_URL setting and add these lines below it:
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles' # Vercel will collect static files here
+STATIC_ROOT = BASE_DIR / 'public' # Vercel will collect static files here
 # settings.py (add this at the end of the static files section)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # <<< ADD THIS LINE
 # This tells Django where to find your static files in development
