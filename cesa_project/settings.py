@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'whitenoise.runserver_nostatic', # <<< THIS LINE HAS BEEN REMOVED
+    'whitenoise.runserver_nostatic', # <<< THIS LINE HAS BEEN REMOVED
     'django.contrib.staticfiles',
     #installed apps
     'core',
@@ -146,9 +146,7 @@ STATIC_ROOT = BASE_DIR / 'public' # Vercel will collect static files here
 # settings.py (add this at the end of the static files section)
 STATICFILES_STORAGE = 'whitenoise.storage.WhiteNoiseStorage'
 # This tells Django where to find your static files in development
-STATICFILES_DIRS = [
-    BASE_DIR / 'core/static',
-]
+STATICFILES_DIRS = [ BASE_DIR / 'core' / 'static' ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

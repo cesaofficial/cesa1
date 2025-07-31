@@ -1,0 +1,238 @@
+/* static/core/css/style.css */
+
+/* ===================================
+   1. GLOBAL & BASE STYLES
+   =================================== */
+   html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212; /* Main dark background */
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrap {
+    flex: 1 0 auto;
+}
+
+.navbar {
+    background-color: rgba(18, 18, 18, 0.85) !important;
+    backdrop-filter: blur(10px);
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-weight: 700;
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: #ffffff;
+}
+.section-title.text-start {
+    text-align: left !important;
+}
+
+.highlight {
+    color: #0d6efd;
+}
+
+.site-footer {
+    background-color: #0a0a0a;
+    flex-shrink: 0;
+    padding: 20px 0;
+}
+
+.bg-darker {
+    background-color: #000;
+}
+
+
+/* ===================================
+   2. HOMEPAGE-SPECIFIC STYLES
+   =================================== */
+
+/* --- Hero Section with Aurora Background --- */
+.hero-section {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 20%, hsla(217, 100%, 50%, 0.3), transparent 30%),
+                radial-gradient(circle at 80% 70%, hsla(190, 100%, 50%, 0.2), transparent 40%);
+    animation: aurora 15s linear infinite;
+    z-index: 1;
+}
+
+@keyframes aurora {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: clamp(6rem, 20vw, 15rem);
+    font-weight: 800;
+    color: #0d6efd;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    color: #adb5bd;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Glassmorphism Card Style --- */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2.5rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    height: 100%;
+}
+
+.glass-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(13, 110, 253, 0.5);
+}
+
+.glass-card .icon {
+    font-size: 2.5rem;
+    color: #0d6efd;
+    margin-bottom: 1rem;
+}
+
+/* --- Final Connect Section Styles --- */
+.social-card {
+    text-align: center;
+    text-decoration: none;
+    color: #e0e0e0;
+}
+.social-card .glass-card {
+    padding: 2rem;
+}
+.social-card .social-icon { font-size: 3rem; }
+.social-card .insta-icon { color: #E4405F; }
+.social-card .linkedin-icon { color: #0A66C2; }
+
+/* ===================================
+   3. TEAM PAGE STYLES
+   - Styles for your team.html template.
+   =================================== */
+
+   .department-section {
+    margin-bottom: 60px;
+}
+.department-section:last-child {
+    margin-bottom: 0;
+}
+
+.department-title {
+    text-align: left;
+    font-size: 1.75rem;
+    font-weight: 600;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Professional Team Card --- */
+.team-card-pro {
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+.team-card-pro:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(13, 110, 253, 0.5);
+}
+
+/* --- THE IMAGE SIZE FIX IS HERE --- */
+.team-card-pro-photo-container {
+    position: relative;
+    width: 120px;  /* Corrected smaller size */
+    height: 120px; /* Corrected smaller size */
+    margin: 0 auto 16px auto;
+}
+.team-card-pro-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #2c2c2c;
+}
+
+/* --- Card Overlay and Socials --- */
+.team-card-pro-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(13, 110, 253, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.team-card-pro:hover .team-card-pro-overlay {
+    opacity: 1;
+}
+.team-card-pro-socials {
+    display: flex;
+    gap: 20px;
+}
+.team-card-pro-socials a {
+    color: #ffffff;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+.team-card-pro-socials a:hover {
+    transform: scale(1.2);
+}
+
+/* --- Card Text --- */
+.team-card-pro-body {
+    padding-top: 10px;
+}
+.team-card-pro-name {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+.team-card-pro-title {
+    font-weight: 400;
+    color: #adb5bd;
+    margin-bottom: 0;
+}
