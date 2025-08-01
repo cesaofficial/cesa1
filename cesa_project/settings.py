@@ -146,7 +146,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles' # Vercel will collect static files here
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # This tells Django where to find your static files in development
-STATICFILES_DIRS = [ BASE_DIR / 'core' / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'core/static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
