@@ -15,3 +15,5 @@ venv/
 # Vercel
 .vercel/
 .vercel
+
+.env.development.local
