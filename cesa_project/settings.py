@@ -29,7 +29,7 @@ DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 # --- ALLOWED HOSTS ---
 # This configuration is robust and recommended for Vercel deployments.
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 
