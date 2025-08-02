@@ -25,8 +25,8 @@ load_dotenv(BASE_DIR / '.env')
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key-for-development-only')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
-
+#DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+DEBUG = True
 # --- ALLOWED HOSTS ---
 # This configuration is robust and recommended for Vercel deployments.
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
