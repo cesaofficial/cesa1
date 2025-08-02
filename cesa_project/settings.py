@@ -40,6 +40,11 @@ VERCEL_URL = os.environ.get('VERCEL_URL')
 if VERCEL_URL:
     ALLOWED_HOSTS.append(VERCEL_URL)
 
+CSRF_TRUSTED_ORIGINS = []
+if VERCEL_URL:
+    # We must add the https scheme to the URL for CSRF verification
+    CSRF_TRUSTED_ORIGINS.append(f'https://{VERCEL_URL}')
+
 # Add a wildcard to trust all subdomains of vercel.app
 ALLOWED_HOSTS.append('.vercel.app')
 
