@@ -241,3 +241,35 @@ body {
     color: #adb5bd;
     margin-bottom: 0;
 }
+/* style.css */
+
+/* ... other styles */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* NEW STYLES FOR THE HERO LOGO */
+.hero-logo {
+    display: block; /* Ensures it's on its own line */
+    max-width: 80%; /* Prevents it from being too wide on smaller screens */
+    height: auto;   /* Maintains aspect ratio */
+    margin: 0 auto 20px auto; /* Centers it and adds space below */
+}
+
+/* We remove the specific styling for the h1 since it's gone */
+/* DELETE OR COMMENT OUT THIS RULE:
+.hero-content h1 {
+    font-size: clamp(6rem, 20vw, 15rem);
+    font-weight: 800;
+    color: #0d6efd;
+}
+*/
+
+.hero-content p {
+    font-size: 1.25rem;
+    color: #adb5bd;
+    max-width: 600px;
+    margin: 0 auto;
+}
