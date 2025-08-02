@@ -25,8 +25,8 @@ load_dotenv(BASE_DIR / '.env')
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-fallback-key-for-development-only')
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+
 # --- ALLOWED HOSTS ---
 # This configuration is robust and recommended for Vercel deployments.
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
@@ -142,12 +142,14 @@ USE_TZ = True
 
 # Find the STATIC_URL setting and add these lines below it:
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles' # Vercel will collect static files here
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Vercel will collect static files here
 # settings.py (add this at the end of the static files section)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # This tells Django where to find your static files in development
-STATICFILES_DIRS = [BASE_DIR / 'core/static']
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

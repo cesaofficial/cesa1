@@ -3,18 +3,17 @@
   "builds": [
     {
       "src": "cesa_project/wsgi.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.12"
+      }
     }
   ],
-  "buildCommand": "bash builds.sh",
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/media/(.*)",
-      "dest": "/media/$1"
+      "dest": "/staticfiles/$1"
     },
     {
       "src": "/(.*)",
