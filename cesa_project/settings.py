@@ -50,10 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic', # <<< THIS LINE HAS BEEN REMOVED
+    #'whitenoise.runserver_nostatic', # <<< THIS LINE HAS BEEN REMOVED
     'django.contrib.staticfiles',
     #installed apps
     'core',
+    # Third-party apps
     'cloudinary_storage',# for media files
     'cloudinary',# for media files
 ]
