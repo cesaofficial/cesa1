@@ -1,8 +1,0 @@
-{
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "cesa_project/wsgi.py"
-    }
-  ]
-}
