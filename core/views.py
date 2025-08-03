@@ -2,9 +2,7 @@ import os
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Department, TeamMember
-
-def home(request):
-    
+   
 def home(request):
     # This is a temporary view for debugging the production environment.
     db_url = os.environ.get('DATABASE_URL', '--- DATABASE_URL NOT FOUND ---')
