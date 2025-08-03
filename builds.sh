@@ -1,11 +1,15 @@
 #!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
 set -e
 
-# NOTE: Vercel automatically runs `pip install` before this script.
-# We only need to run the Django-specific commands.
+# Vercel's build environment requires specifying the Python version explicitly.
+# We use python3.9 because it is the standard, stable runtime provided.
 
-# Run database migrations
-python manage.py migrate
+echo "Running database migrations..."
+python3.9 manage.py migrate
 
-# Collect static files
-python manage.py collectstatic --noinput --clear
+echo "Collecting static files..."
+python3.9 manage.py collectstatic --noinput --clear
+
+echo "Build script completed successfully."
