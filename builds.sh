@@ -1,9 +1,8 @@
-
-# Exit immediately if a command exits with a non-zero status.
+#!/bin/bash
 set -e
 
-# Install dependencies
-pip install -r requirements.txt
+# NOTE: Vercel automatically runs `pip install` before this script.
+# We only need to run the Django-specific commands.
 
 # Run database migrations
 python manage.py migrate
