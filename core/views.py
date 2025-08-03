@@ -4,22 +4,9 @@ from django.shortcuts import render
 from .models import Department, TeamMember
    
 def home(request):
-    # This is a temporary view for debugging the production environment.
-    db_url = os.environ.get('DATABASE_URL', '--- DATABASE_URL NOT FOUND ---')
-    secret_key_exists = "Yes" if os.environ.get('SECRET_KEY') else "No"
-    
-    html_response = f"""
-    <h1>Vercel Production Environment Debug</h1>
-    <p>This page is showing the environment variables from the live server.</p>
-    <hr>
-    <h2>DATABASE_URL:</h2>
-    <p style="font-family: monospace; background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc;">{db_url}</p>
-    <hr>
-    <h2>SECRET_KEY Exists?</h2>
-    <p>{secret_key_exists}</p>
-    """
-    
-    return HttpResponse(html_response)
+    return render(request, 'core/home.html')
+
+
 
 def event_list(request):
     #events = Event.objects.all().order_by('-date')
