@@ -1,26 +1,19 @@
 #!/bin/bash
 set -o errexit
 
-echo "--- INSTALLING ALL DEPENDENCIES ---"
-# Install Python dependencies
-pip install -r requirements.txt
-# Install frontend dependencies
+echo "--- BUILDING FRONTEND ---"
 cd frontend
 npm install
-cd ..
-
-echo "--- BUILDING FRONTEND ---"
-# Build the frontend
-cd frontend
 npm run build
 cd ..
 
 echo "--- PREPARING DJANGO STATIC FILES ---"
-# Create the staticfiles directory and copy index.html
+# Create the staticfiles directory to ensure it exists
 mkdir -p staticfiles
+# Manually copy the essential index.html to where Django can find it at runtime
 cp frontend/dist/index.html staticfiles/
 
-# Run collectstatic
+# Run collectstatic to gather all JS, CSS, and other assets
 python manage.py collectstatic --no-input
 
 echo "--- BUILD SCRIPT COMPLETE ---"
