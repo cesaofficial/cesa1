@@ -1,17 +1,11 @@
 {
     "builds": [
-      {
-        "src": "cesa_project/wsgi.py",
-        "use": "@vercel/python",
-        "config": {
-          "maxLambdaSize": "50mb"
-        }
-      }
+      { "src": "cesa_project/wsgi.py", "use": "@vercel/python" }
     ],
     "routes": [
       {
         "src": "/static/(.*)",
-        "dest": "/staticfiles/$1"
+        "dest": "/static/$1"
       },
       {
         "src": "/(.*)",
