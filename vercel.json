@@ -1,26 +1,19 @@
 {
-    "version": 2,
     "builds": [
-        {
-            "src": "build.sh",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "staticfiles"
-            }
-        },
-        {
-            "src": "cesa_project/wsgi.py",
-            "use": "@vercel/python"
-        }
+      {
+        "src": "cesa_project/wsgi.py",
+        "use": "@vercel/python"
+      }
     ],
     "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "/static/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "cesa_project/wsgi.py"
-        }
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "cesa_project/wsgi.py"
+      }
     ]
-}
+  }
+  
