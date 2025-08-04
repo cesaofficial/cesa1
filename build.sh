@@ -1,19 +1,22 @@
 #!/bin/bash
 set -o errexit
 
-echo "--- BUILDING FRONTEND ---"
+echo "--- INSTALLING ALL DEPENDENCIES ---"
+pip install -r requirements.txt
 cd frontend
 npm install
+cd ..
+
+echo "--- BUILDING FRONTEND ---"
+cd frontend
 npm run build
 cd ..
 
-echo "--- PREPARING DJANGO STATIC FILES ---"
-# Create the staticfiles directory to ensure it exists
+echo "--- PREPARING DJANGO DEPLOYMENT FILES ---"
 mkdir -p staticfiles
-# Manually copy the essential index.html to where Django can find it at runtime
 cp frontend/dist/index.html staticfiles/
 
-# Run collectstatic to gather all JS, CSS, and other assets
-python manage.py collectstatic --no-input
+# THE FIX IS ON THIS LINE! Change 'python' to 'python3'
+python3 manage.py collectstatic --no-input
 
-echo "--- BUILD SCRIPT COMPLETE ---"
+echo "--- BUILD SCRIPT HAS COMPLETED SUCCESSFULLY ---"
