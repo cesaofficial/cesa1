@@ -1,13 +1,23 @@
 #!/bin/bash
 
 # Exit on error
-set -e
+set -o errexit
 
-# We must install packages ourselves because the UI is ignored
-python3.9 -m pip install -r requirements.txt
+echo "Building frontend..."
+# Navigate into the frontend directory
+cd frontend
 
-# Run migrations
-python3.9 manage.py migrate
+# Install dependencies and build the project
+npm install
+npm run build
 
-# Collect static files
-python3.9 manage.py collectstatic --noinput --clear
+# Navigate back to the root directory
+cd ..
+
+echo "Installing Python dependencies..."
+# Install Python dependencies
+pip install -r requirements.txt
+
+echo "Running collectstatic..."
+# Run Django's collectstatic
+python manage.py collectstatic --no-input

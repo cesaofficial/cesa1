@@ -80,7 +80,7 @@ ROOT_URLCONF = 'cesa_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend/dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -158,6 +158,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # This tells Django where to find your static files in development
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'core/static'),
+    os.path.join(BASE_DIR, 'frontend/dist'),
 ]
 
 # Default primary key field type
