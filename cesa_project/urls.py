@@ -20,10 +20,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
+# cesa_project/urls.py
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^team.*', TemplateView.as_view(template_name='index.html')),
+    # The Django URLs MUST come first
     path('', include('core.urls')),
+    # The React catch-all MUST come LAST
+    re_path(r'^team.*', TemplateView.as_view(template_name='index.html')),
 ]
 
 if settings.DEBUG:
