@@ -155,7 +155,7 @@ USE_TZ = True
 
 # Find the STATIC_URL setting and add these lines below it:
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Vercel will collect static files here
+STATIC_ROOT = os.path.join(BASE_DIR, 'cesa_project', 'staticfiles_build') # Vercel will collect static files here
 # settings.py (add this at the end of the static files section)
 # settings.py -> Static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
