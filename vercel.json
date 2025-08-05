@@ -5,12 +5,16 @@
       "src": "cesa_project/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    },
+    {
+      "src": "cesa_project/staticfiles_build/**",  
+      "use": "@vercel/static"                     
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
+      "src": "/static/(.*)",                     
+      "dest": "cesa_project/staticfiles_build/$1" 
     },
     {
       "src": "/media/(.*)",
