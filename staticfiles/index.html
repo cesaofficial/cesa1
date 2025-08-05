@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meet The Team 2025-26</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #0D0D0D;
+      }
+      /* Reveal on scroll animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        will-change: opacity, transform;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Animated Aurora Background */
+      .background-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+      }
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.3;
+      }
+      .blob-1 {
+        width: 400px;
+        height: 400px;
+        background-color: #7a5aff; /* violet */
+        animation: move 25s infinite alternate;
+      }
+      .blob-2 {
+          width: 300px;
+          height: 300px;
+          background-color: #3b82f6; /* blue */
+          animation: move2 30s infinite alternate;
+      }
+      .blob-3 {
+          width: 250px;
+          height: 250px;
+          background-color: #ec4899; /* pink */
+          animation: move3 20s infinite alternate;
+      }
+      @keyframes move {
+        from { transform: translate(-100px, -50px) rotate(-90deg); }
+        to { transform: translate(calc(100vw - 300px), calc(100vh - 350px)) rotate(90deg); }
+      }
+      @keyframes move2 {
+        from { transform: translate(calc(100vw - 200px), 100px) rotate(45deg); }
+        to { transform: translate(50px, calc(100vh - 400px)) rotate(-45deg); }
+      }
+      @keyframes move3 {
+        from { transform: translate(200px, calc(100vh - 200px)) rotate(0deg); }
+        to { transform: translate(calc(100vw - 400px), 50px) rotate(180deg); }
+      }
+    </style>
+
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.1.1/",
+    "react": "https://esm.sh/react@^19.1.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.1/"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/static/assets/index-Mt1cHGxR.js"></script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

@@ -81,8 +81,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'core', 'templates'),
-            #os.path.join(BASE_DIR, 'frontend', 'dist'),  # optional: if using React/Vite-generated HTML
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'frontend', 'dist'),  # optional: if using React/Vite-generated HTML
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -163,7 +163,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # This tells Django where to find your static files in development
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'core/static'),
-    #os.path.join(BASE_DIR, 'frontend/dist'),
+    os.path.join(BASE_DIR, 'frontend/dist'),
 ]
 
 # Default primary key field type

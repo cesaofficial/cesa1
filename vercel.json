@@ -1,20 +1,26 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "cesa_project/wsgi.py",
-        "use": "@vercel/python"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/static/(.*)",
-        "dest": "staticfiles/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "cesa_project/wsgi.py"
-      }
-    ]
-  }
-  
+  "version": 2,
+  "builds": [
+    {
+      "src": "cesa_project/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/media/(.*)",
+      "dest": "/media/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "cesa_project/wsgi.py"
+    }
+  ],
+  "installCommand": "pip install -r requirements.txt && npm install --prefix frontend",
+  "buildCommand": "npm run build --prefix frontend && python manage.py collectstatic --noinput"
+}
