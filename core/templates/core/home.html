@@ -4,10 +4,13 @@
 {% block content %}
 <!-- HERO SECTION -->
 <section class="hero-section">
-    <div class="hero-background"></div>
-    <div class="hero-content">
-        <img src="{% static 'core/images/hero-logo.png' %}" alt="CESA" class="hero-logo">
-        <p>Welcome to the Computer Engineering Students Association. The hub for innovation, collaboration, and growth.</p>
+    <div class="hero-background"></div> {# This div gets the aurora background animation #}
+    <!-- Add a subtle glowing pseudo-element behind the content (handled by CSS on .hero-section::before) -->
+    <div class="hero-content"> {# This div gets the overall fade-in-scale animation #}
+        <img src="{% static 'core/images/hero-logo.png' %}" alt="CESA" class="hero-logo"> {# This image gets the logoPop animation #}
+        <h1 class="hero-headline">Innovate. Collaborate. <span class="highlight">Grow.</span></h1> {# This headline gets the textSlideUp animation #}
+        <p class="hero-subtext">Welcome to the Computer Engineering Students Association. The hub for aspiring engineers to connect, learn, and build the future.</p> {# This paragraph gets the textSlideUp animation #}
+        <a href="{% url 'event_list' %}" class="hero-cta-button">Explore Our Events</a> {# This button gets the textSlideUp animation #}
     </div>
 </section>
 
@@ -16,13 +19,13 @@
     <div class="row align-items-center g-5">
         <div class="col-lg-6">
             <h2 class="section-title text-start mb-4">A Community <span class="highlight">Built For The Future.</span></h2>
-            <p class="text-secondary fs-5">CESA is more than just a student committee; it's a launchpad for aspiring engineers. We are a passionate community dedicated to exploring the vast world of computer science and engineering.</p>
-            <p class="text-secondary fs-5">Our goal is to provide a platform where students can learn from industry experts, collaborate on groundbreaking projects, and build a network that lasts a lifetime.</p>
+            <p class="text-secondary fs-5">CESA is more than just a student committee; it's a launchpad for aspiring engineers. We are a passionate community dedicated to exploring the vast world of computer science and engineering, fostering a culture of continuous learning and innovation.</p>
+            <p class="text-secondary fs-5">Our goal is to provide a platform where students can learn from industry experts, collaborate on groundbreaking projects, and build a network that lasts a lifetime. We believe in nurturing talent and preparing our members for the challenges and opportunities of the tech industry.</p>
         </div>
         <div class="col-lg-6">
             <div class="glass-card">
                 <h4 class="fw-bold">Our Mission</h4>
-                <p class="text-secondary">To bridge the gap between academic theory and real-world application, empowering every member with the skills, confidence, and connections to excel in their careers.</p>
+                <p class="text-secondary">To bridge the gap between academic theory and real-world application, empowering every member with the skills, confidence, and connections to excel in their careers and make a significant impact in the tech world.</p>
             </div>
         </div>
     </div>
@@ -36,22 +39,22 @@
             <div class="col-md-6 col-lg-4">
                 <div class="glass-card">
                     <div class="icon"><i class="fas fa-laptop-code"></i></div>
-                    <h4 class="fw-bold">Workshops & Events</h4>
-                    <p class="text-secondary">Hands-on sessions on cutting-edge technologies like AI/ML, Web3, and Cloud Computing.</p>
+                    <h4 class="fw-bold">Workshops & Bootcamps</h4>
+                    <p class="text-secondary">Hands-on sessions on cutting-edge technologies like AI/ML, Web3, Cloud Computing, and Data Science.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="glass-card">
                     <div class="icon"><i class="fas fa-trophy"></i></div>
-                    <h4 class="fw-bold">Hackathons & Competitions</h4>
-                    <p class="text-secondary">Fostering innovation and teamwork through competitive and collaborative real-world problem-solving.</p>
+                    <h4 class="fw-bold">Hackathons & Innovations</h4>
+                    <p class="text-secondary">Fostering innovation and teamwork through competitive and collaborative real-world problem-solving challenges.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4">
                 <div class="glass-card">
                     <div class="icon"><i class="fas fa-network-wired"></i></div>
-                    <h4 class="fw-bold">Industry Networking</h4>
-                    <p class="text-secondary">Creating a supportive network through tech talks, mentorship programs, and alumni connections.</p>
+                    <h4 class="fw-bold">Industry & Mentorship</h4>
+                    <p class="text-secondary">Creating a supportive network through expert tech talks, industry mentorship programs, and strong alumni connections.</p>
                 </div>
             </div>
         </div>
