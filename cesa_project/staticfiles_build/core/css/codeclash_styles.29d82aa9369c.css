@@ -1,0 +1,463 @@
+/* codeclash_styles.css */
+
+/* --- Base & Global Styles --- */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-family: 'DM Sans', sans-serif; /* Primary font */
+    background-color: #0A0F1F; /* bg-dark-blue-bg */
+    color: #E5E7EB; /* text-light */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #141A2D; /* dark-blue-card */
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: #4F46E5; /* primary-blue */
+    border-radius: 5px;
+    border: 2px solid #141A2D;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #3B82F6; /* A slightly darker blue for hover */
+}
+
+/* Container for max width & centering */
+.container {
+    max-width: 1280px; /* Equivalent to Tailwind's max-w-7xl roughly */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+}
+
+/* Section padding */
+section {
+    padding-top: 5rem; /* py-20 */
+    padding-bottom: 5rem; /* py-20 */
+}
+
+/* Headings & Text Colors */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Geist', sans-serif; /* Heading font */
+    color: #E5E7EB; /* text-light */
+}
+
+.text-text-light { color: #E5E7EB; }
+.text-text-muted { color: #A1A1AA; }
+.text-primary-blue { color: #4F46E5; }
+.text-primary-green { color: #10B981; }
+.text-accent-purple { color: #8B5CF6; }
+.text-accent-cyan { color: #06B6D4; }
+.text-white { color: #fff; }
+
+/* Background Colors */
+.bg-dark-blue-bg { background-color: #0A0F1F; }
+.bg-dark-blue-card { background-color: #141A2D; }
+
+/* Font utilities */
+.font-sans { font-family: 'DM Sans', sans-serif; }
+.font-mono { font-family: 'Fira Code', monospace; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+
+
+/* --- Navbar - MATCHING LATEST SCREENSHOT EXACTLY --- */
+.navbar {
+    background-color: #0A0F1F; /* Solid dark background matching page body */
+    backdrop-filter: blur(0px); /* No blur for a solid look */
+    -webkit-backdrop-filter: blur(0px);
+    border-bottom: none; /* No border */
+    box-shadow: none; /* No shadow */
+    padding-top: 1.25rem; /* More padding */
+    padding-bottom: 1.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.navbar-brand-text {
+    /* CodeClash 2025 text has a gradient */
+    background-image: linear-gradient(to right, #8B5CF6, #06B6D4); /* Purple to Cyan */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 1.25rem; /* text-xl */
+}
+.navbar-links {
+    margin-left: auto; /* Push links to center/right */
+    margin-right: 1.5rem; /* Space between links and button */
+}
+.navbar-links li a {
+    color: #E5E7EB; /* Light text color */
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-medium */
+    position: relative;
+    padding-bottom: 0.25rem; /* Space for underline */
+    transition: color 0.3s ease;
+    display: inline-block; /* Allows vertical padding/underline */
+    text-decoration: none; /* Remove default underline */
+}
+/* Add dot separator between links using ::before */
+.navbar-links li:not(:first-child) a::before {
+    content: '\2022'; /* Bullet point character */
+    color: #A1A1AA; /* Muted color for bullet */
+    margin-right: 0.75rem; /* Space between bullet and text */
+    font-size: 0.75rem; /* Smaller bullet */
+    position: relative;
+    top: -1px; /* Slight vertical adjustment */
+}
+/* Gradient underline on hover for nav links */
+.navbar-links li a.nav-link::after { /* Use .nav-link for specificity if other a tags exist */
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Position below text */
+    left: 0; /* Start from left */
+    width: 0; /* Initially no width */
+    height: 2px; /* Thickness of underline */
+    background-image: linear-gradient(to right, #8B5CF6, #06B6D4); /* Gradient underline */
+    transition: width 0.3s ease;
+    border-radius: 1px;
+}
+.navbar-links li a.nav-link:hover::after,
+.navbar-links li a.active.nav-link::after { /* Add active state if Django adds it */
+    width: 100%; /* Expand to full width on hover */
+}
+.navbar-links li a:hover {
+    color: #8B5CF6; /* Highlight color on hover (purple part of gradient) */
+}
+
+/* Register Button in Navbar */
+.register-button-nav {
+    background-image: linear-gradient(to right, #8B5CF6, #06B6D4); /* Purple to Cyan Gradient */
+    color: #fff;
+    padding: 0.625rem 1.25rem; /* py-2.5 px-5 (approximately) */
+    border-radius: 0.5rem; /* rounded-lg (8px) */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4); /* Shadow matching gradient */
+}
+.register-button-nav:hover {
+    background-position: 100% 0; /* Shift gradient on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(139, 92, 246, 0.6);
+}
+/* For gradient animation */
+.register-button-nav {
+    background-size: 200% auto; /* Make background larger for shifting */
+    transition: background-position 0.5s ease-out, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* --- Hero Section - Background Adjusted to Match Image --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem; /* p-4 */
+    padding-top: 80px; /* Add padding to account for fixed navbar */
+    /* Adjust main hero background to match screenshot's blueish dark tone and subtle glow */
+    background-color: #0A0F1F; /* Base dark blue */
+    background-image: radial-gradient(circle at 15% 20%, rgba(79, 70, 229, 0.1) 0%, transparent 60%),
+                      radial-gradient(circle at 85% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 60%);
+    background-blend-mode: overlay; /* Subtle blend */
+}
+
+/* Background Aurora/Glow effects - FINE-TUNED FOR SCREENSHOT LOOK */
+.hero-background-aurora-1 {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.1) 0%, transparent 35%); /* Very subtle purple */
+    opacity: 0.8; /* Make them slightly more present */
+    filter: blur(48px);
+    animation: auroraMove 25s linear infinite;
+}
+.hero-background-aurora-2 {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 40%); /* Very subtle green */
+    opacity: 0.7;
+    filter: blur(48px);
+    animation: auroraMove 25s linear infinite;
+    animation-delay: 0.5s;
+}
+.hero-background-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%); /* Center subtle glow */
+    opacity: 0.5;
+    filter: blur(64px);
+    animation: pulseGlow 10s ease-in-out infinite alternate;
+}
+
+.codeclash-title {
+    font-size: 6rem; /* text-6xl */
+    line-height: 1.2;
+    font-weight: 800; /* font-bold */
+    background-image: linear-gradient(to right, #8B5CF6, #06B6D4); /* Matches text gradient of navbar brand */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    animation: textGlow 3s infinite ease-in-out;
+}
+@media (min-width: 768px) { /* md: */
+    .codeclash-title { font-size: 8rem; } /* md:text-8xl */
+}
+@media (min-width: 1024px) { /* lg: */
+    .codeclash-title { font-size: 10rem; } /* lg:text-[10rem] */
+}
+
+.hero-section p {
+    max-width: 48rem; /* max-w-3xl */
+    color: rgba(229, 231, 235, 0.8); /* text-light/80 */
+}
+.register-button {
+    background-color: #10B981; /* primary-green */
+    color: #fff;
+    padding: 1rem 2.5rem; /* px-10 py-4 */
+    border-radius: 9999px; /* rounded-full */
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 700; /* font-bold */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+}
+.register-button:hover {
+    background-color: rgba(16, 185, 129, 0.9); /* bg-opacity-90 */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 20px 25px rgba(0, 0, 0, 0.1); /* shadow-xl */
+    transform: scale(1.05);
+}
+
+
+/* --- Section Titles (UNCHANGED) --- */
+.section-title {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700; /* font-bold */
+    text-align: center;
+    margin-bottom: 3rem; /* mb-12 */
+    background-image: linear-gradient(to right, #4F46E5, #8B5CF6); /* Custom gradient for section title */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+@media (min-width: 768px) { /* md: */
+    .section-title { font-size: 3rem; } /* md:text-5xl */
+}
+
+/* --- Glassmorphism Cards (UNCHANGED) --- */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.05); /* White with opacity for glass */
+    backdrop-filter: blur(15px); /* Blur effect */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem; /* rounded-3xl (adjusted from rounded-2xl to match design) */
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Initial subtle shadow */
+}
+.glass-effect::before { /* Inner glow effect */
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(79, 70, 229, 0.15) 0%, transparent 50%); /* primary-blue */
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: rotate(0deg);
+    z-index: 0;
+}
+.glass-effect:hover::before {
+    opacity: 1;
+    transform: rotate(45deg);
+}
+.glass-effect > * { /* Ensure content is above the pseudo-element glow */
+    position: relative;
+    z-index: 1;
+}
+.glass-effect-hover:hover {
+    transform: translateY(-8px);
+    border-color: #4F46E5; /* primary-blue */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(79, 70, 229, 0.2);
+}
+
+/* --- Timeline Section (UNCHANGED) --- */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 4px; /* w-1 */
+    background: linear-gradient(180deg, #4F46E5, #8B5CF6); /* from-primary-blue to-accent-purple */
+    border-radius: 9999px; /* rounded-full */
+}
+.timeline-bullet {
+    position: relative;
+    width: 64px; /* w-16 */
+    height: 64px; /* h-16 */
+    border-radius: 9999px; /* rounded-full */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    border: 4px solid #141A2D; /* ring-4 ring-dark-blue-card */
+}
+
+/* --- Prize Pool Section (UNCHANGED) --- */
+.prize-amount {
+    font-size: 3.75rem; /* text-6xl */
+    font-weight: 700; /* font-bold */
+    color: #10B981; /* primary-green */
+}
+@media (min-width: 768px) { /* md: */
+    .prize-amount { font-size: 4.5rem; } /* md:text-7xl */
+}
+
+
+/* --- Utility Classes (Mimicking Tailwind) (UNCHANGED) --- */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.z-10 { z-index: 10; }
+.z-0 { z-index: 0; }
+.z-50 { z-index: 50; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.flex-shrink-0 { flex-shrink: 0; }
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.gap-8 { gap: 2rem; }
+.space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+.space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 2rem; }
+.space-y-1 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.25rem; }
+.space-x-6 > :not([hidden]) ~ :not([hidden]) { margin-left: 1.5rem; }
+.space-x-10 > :not([hidden]) ~ :not([hidden]) { margin-left: 2.5rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.pr-8 { padding-right: 2rem; }
+.pl-8 { padding-left: 2rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mt-10 { margin-top: 2.5rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-10 { margin-bottom: 2.5rem; }
+.mb-12 { margin-bottom: 3rem; }
+.mb-16 { margin-bottom: 4rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.w-1 { width: 0.25rem; } /* h-full w-1 for timeline line */
+.w-16 { width: 4rem; }
+.h-16 { height: 4rem; }
+.w-48 { width: 12rem; }
+.w-1\/2 { width: 50%; }
+.max-w-lg { max-width: 32rem; }
+.max-w-3xl { max-width: 48rem; }
+.max-w-5xl { max-width: 64rem; }
+.max-w-2xl { max-width: 42rem; }
+.rounded-full { border-radius: 9999px; }
+.list-disc { list-style-type: disc; }
+.list-inside { list-style-position: inside; }
+.hidden { display: none; }
+.block { display: block; }
+.cursor-pointer { cursor: pointer; }
+.transform { transform: var(--tw-transform); }
+.transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+.rotate-180 { --tw-rotate: 180deg; transform: rotate(var(--tw-rotate)); }
+.rotate-0 { --tw-rotate: 0deg; transform: rotate(var(--tw-rotate)); }
+.leading-tight { line-height: 1.2; }
+.object-contain { object-fit: contain; }
+.text-sm { font-size: 0.875rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+.text-5xl { font-size: 3rem; }
+.text-6xl { font-size: 3.75rem; }
+
+/* Responsive Grid for md:grid-cols-3 */
+@media (min-width: 768px) {
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Responsive Grid for sm:grid-cols-2 lg:grid-cols-4 */
+@media (min-width: 640px) { /* sm: */
+    .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) { /* lg: */
+    .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* --- Keyframes & Animations (UNCHANGED) --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(79, 70, 229, 0.4), 0 0 20px rgba(79, 70, 229, 0.2); }
+  50% { box-shadow: 0 0 15px rgba(79, 70, 229, 0.6), 0 0 30px rgba(79, 70, 229, 0.3); }
+}
+@keyframes auroraMove {
+  0% { background-position: 0% 0%, 100% 100%; }
+  100% { background-position: 100% 100%, 0% 0%; }
+}
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 10px rgba(139, 92, 246, 0.7), 0 0 20px rgba(6, 182, 212, 0.5); }
+  50% { text-shadow: 0 0 15px rgba(139, 92, 246, 0.9), 0 0 30px rgba(6, 182, 212, 0.7); }
+}
+
+.animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+.animate-slideInLeft { animation: slideInLeft 0.8s ease-out forwards; }
+.animate-slideInRight { animation: slideInRight 0.8s ease-out forwards; }
+.animate-pulseGlow { animation: pulseGlow 2s infinite ease-in-out; }
+.animate-auroraMove { animation: auroraMove 25s linear infinite; }
+.animate-textGlow { animation: textGlow 3s infinite ease-in-out; }
+.animation-delay-500ms { animation-delay: 0.5s; } /* Specific delay utility */
+
+/* Responsive specific flex ordering for timeline */
+@media (min-width: 768px) {
+    .md\:order-1 { order: 1; }
+    .md\:order-2 { order: 2; }
+}

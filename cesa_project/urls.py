@@ -27,6 +27,8 @@ urlpatterns = [
     path('', include('core.urls')),
     # The React catch-all MUST come LAST
     re_path(r'^team.*', TemplateView.as_view(template_name='index.html')),
+    path('events/codeclash/', TemplateView.as_view(template_name='core/codeclash_page.html'), name='codeclash_event_page'),
+
 ]
 
 #if settings.DEBUG:
