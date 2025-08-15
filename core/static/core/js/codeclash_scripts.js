@@ -28,6 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Navbar Hamburger Menu Functionality (REMOVED) ---
-    // The previous code for hamburger menu is removed as per your request.
+    // --- Navbar Hamburger Menu Functionality (REMOVED as requested) ---
+    // The previous code for hamburger menu is removed.
 });

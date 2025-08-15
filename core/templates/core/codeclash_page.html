@@ -21,23 +21,21 @@
 <body>
     <div class="min-h-screen bg-dark-blue-bg text-text-light font-sans relative overflow-hidden">
 
-        <!-- Navbar - Reverted to always visible links, no hamburger -->
-        <nav class="navbar fixed top-0 left-0 right-0 z-50 py-4 px-8 flex justify-between items-center">
-            <div class="navbar-brand-text text-xl font-bold">CodeClash 2025</div>
-            
-            <!-- Links and Button are always visible -->
-            <ul class="navbar-links flex space-x-6 text-base font-medium">
-                <li><a href="#" class="nav-link">Home</a></li>
-                <li><a href="#why-participate" class="nav-link">About</a></li>
-                <li><a href="#competition-journey" class="nav-link">Timeline</a></li>
-                <li><a href="#prize-pool" class="nav-link">Prizes</a></li>
-                <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <!-- Top Header - Replacing Navbar -->
+        <div class="top-header fixed top-0 left-0 right-0 z-50 py-4 px-8 flex justify-between items-center">
+            <div class="top-header-brand-text text-xl font-bold">CodeClash 2025</div>
+            <ul class="top-header-links flex space-x-6 text-base font-medium">
+                <li><a href="#" class="top-link">Home</a></li>
+                <li><a href="#why-participate" class="top-link">About</a></li>
+                <li><a href="#competition-journey" class="top-link">Timeline</a></li>
+                <li><a href="#prize-pool" class="top-link">Prizes</a></li>
+                <li><a href="#faq" class="top-link">FAQ</a></li>
             </ul>
-            <a href="#" class="register-button-nav text-base font-semibold">Register Now</a>
-        </nav>
+            <a href="#" class="top-header-register-button text-base font-semibold">Register Now</a>
+        </div>
 
 
-        <!-- Hero Section - Keeping elements as per your last request -->
+        <!-- Hero Section - Responsive adjustments for mobile -->
         <section class="hero-section relative h-screen flex flex-col items-center justify-center text-center p-4">
             <!-- Background Aurora/Glow effects -->
             <div class="hero-background-aurora-1"></div>
@@ -48,12 +46,11 @@
                 <h1 class="codeclash-title">
                     CodeClash
                 </h1>
-                <!-- 2025 1.0 text is removed -->
                 <p class="max-w-3xl text-lg md:text-xl text-text-light/80 mt-4 mb-8">
                     The Ultimate State-Level Solo Coding Competition. Where Code Meets Innovation.
                 </p>
 
-                <!-- Register Button -->
+                <!-- Register Button (in Hero Section) -->
                 <a href="#" class="register-button px-10 py-4 rounded-full text-white text-xl font-bold transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-xl hover:scale-105 transform">
                     Register Now
                 </a>
@@ -90,7 +87,7 @@
             </div>
         </section>
 
-        <!-- Competition Journey Section - Mobile Optimized -->
+        <!-- Competition Journey Section - Mobile Optimized (Numbers removed) -->
         <section id="competition-journey" class="py-20 bg-dark-blue-bg">
             <div class="container mx-auto px-4">
                 <h2 class="section-title">Competition Journey</h2>
@@ -100,7 +97,7 @@
 
                 <!-- Timeline -->
                 <div class="relative max-w-5xl mx-auto">
-                    <!-- Vertical Line (Its positioning will be adjusted by CSS) -->
+                    <!-- Vertical Line -->
                     <div class="timeline-line"></div>
 
                     <!-- Timeline Items -->
@@ -117,7 +114,7 @@
                             </div>
                         </div>
                         <div class="timeline-bullet bg-primary-blue">
-                            <!-- Removed serial number here -->
+                            <!-- Number removed as requested -->
                         </div>
                         <div class="w-1/2 pl-8">
                             <p class="text-lg font-mono text-primary-blue mb-2">September 8, 2025</p>
@@ -131,7 +128,7 @@
                             <p class="text-sm text-text-muted">Phase 2</p>
                         </div>
                         <div class="timeline-bullet bg-accent-purple">
-                            <!-- Removed serial number here -->
+                            <!-- Number removed as requested -->
                         </div>
                         <div class="w-1/2 pl-8 order-1">
                             <div class="glass-effect p-6 inline-block text-left animate-slideInRight">
@@ -160,7 +157,7 @@
                             </div>
                         </div>
                         <div class="timeline-bullet bg-primary-blue">
-                            <!-- Removed serial number here -->
+                            <!-- Number removed as requested -->
                         </div>
                         <div class="w-1/2 pl-8">
                             <p class="text-lg font-mono text-primary-blue mb-2">September 10, 2025</p>
@@ -174,7 +171,7 @@
                             <p class="text-sm text-text-muted">Phase 4</p>
                         </div>
                         <div class="timeline-bullet bg-accent-purple">
-                            <!-- Removed serial number here -->
+                            <!-- Number removed as requested -->
                         </div>
                         <div class="w-1/2 pl-8 order-1">
                             <div class="glass-effect p-6 inline-block text-left animate-slideInRight">
