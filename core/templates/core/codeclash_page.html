@@ -1,349 +1,781 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
     <title>CodeClash 2025</title>
 
-    {% load static %} 
+    {% load static %}
 
     <!-- Google Fonts (Popppins, DM Sans, Fira Code, Geist) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@400;700&family=Geist:wght@400;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@400;700&family=Geist:wght@400;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 
     <!-- Your Custom CSS -->
-    <link rel="stylesheet" href="{% static 'core/css/codeclash_styles.css' %}">
-</head>
-<body>
-    <div class="min-h-screen bg-dark-blue-bg text-text-light font-sans relative overflow-hidden">
+    <link
+      rel="stylesheet"
+      href="{% static 'core/css/codeclash_styles.css' %}"
+    />
 
-        <!-- Top Header - Replacing Navbar -->
-        <div class="top-header fixed top-0 left-0 right-0 z-50 py-4 px-8 flex justify-between items-center">
-            <div class="top-header-brand-text text-xl font-bold">CodeClash 2025</div>
-            <ul class="top-header-links flex space-x-6 text-base font-medium">
-                <li><a href="#" class="top-link">Home</a></li>
-                <li><a href="#why-participate" class="top-link">About</a></li>
-                <li><a href="#competition-journey" class="top-link">Timeline</a></li>
-                <li><a href="#prize-pool" class="top-link">Prizes</a></li>
-                <li><a href="#faq" class="top-link">FAQ</a></li>
-            </ul>
-            <a href="https://unstop.com/p/codeclash-2025-bharati-vidyapeeth-college-of-engineering-bvcoe-navi-mumbai-1538643 " class="top-header-register-button text-base font-semibold">Register Now</a>
+    <!--  Added responsive styles -->
+    <style>
+      /* Mobile Navigation Styles */
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 8px;
+      }
+
+      .mobile-menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background-color: #ffffff;
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(13, 25, 43, 0.98);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        transition: left 0.3s ease;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .mobile-menu.active {
+        left: 0;
+      }
+
+      .mobile-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+      }
+
+      .mobile-menu li {
+        margin: 20px 0;
+      }
+
+      .mobile-menu a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .mobile-menu a:hover {
+        color: #3b82f6;
+      }
+
+      .mobile-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+      /* Responsive Timeline Styles */
+      @media (max-width: 768px) {
+        .mobile-menu-toggle {
+          display: flex;
+        }
+
+        .navbar-links {
+          display: none;
+        }
+
+        .register-button-nav {
+          display: none;
+        }
+
+        /*  Timeline Mobile Adjustments - Remove vertical line and place numbers above content */
+        .timeline-line {
+          display: none !important;
+        }
+
+        .timeline-item {
+          flex-direction: column !important;
+          align-items: center !important;
+          margin: 0 !important;
+          position: relative !important;
+          width: 100% !important; /* Ensure full width */
+          box-sizing: border-box !important;
+        }
+
+        .timeline-item .w-1\/2 {
+          width: 100% !important;
+          padding: 0 !important;
+          text-align: center !important;
+          order: unset !important;
+          margin: 0 auto !important;
+          box-sizing: border-box !important;
+          display: block !important;
+        }
+
+        .timeline-item .glass-effect {
+          margin: 0 auto !important;
+          width: 100% !important;
+          max-width: 400px !important;
+          box-sizing: border-box !important;
+        }
+
+        .timeline-bullet {
+          position: relative !important;
+          left: auto !important;
+          margin: 0 0 20px 0 !important;
+          order: -1 !important;
+        }
+
+        /* Hero Section Mobile */
+        .codeclash-title {
+          font-size: 3rem !important;
+        }
+
+        .hero-section p {
+          font-size: 1rem !important;
+          padding: 0 20px;
+        }
+
+        /* Grid Adjustments */
+        .grid.grid-cols-1.md\\:grid-cols-3 {
+          grid-template-columns: 1fr !important;
+          gap: 1rem !important;
+        }
+
+        .grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-4 {
+          grid-template-columns: 1fr !important;
+          gap: 1rem !important;
+        }
+
+        /* Section Padding */
+        section {
+          padding: 60px 0 !important;
+        }
+
+        .container {
+          padding: 0 20px !important;
+        }
+
+        /* Prize Amount Mobile */
+        .prize-amount {
+          font-size: 3rem !important;
+        }
+
+        /* FAQ Mobile */
+        .glass-effect {
+          padding: 20px !important;
+          margin-bottom: 4px;
+        }
+
+        /* Button Mobile */
+        .register-button {
+          padding: 12px 24px !important;
+          font-size: 1rem !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .codeclash-title {
+          font-size: 2.5rem !important;
+        }
+
+        .section-title {
+          font-size: 2rem !important;
+        }
+
+        .prize-amount {
+          font-size: 2.5rem !important;
+        }
+
+        .timeline-bullet {
+          width: 30px !important;
+          height: 30px !important;
+          font-size: 0.8rem !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="min-h-screen bg-dark-blue-bg text-text-light font-sans relative overflow-hidden"
+    >
+      <!-- Navbar - Designed to Match Latest Screenshot EXACTLY -->
+      <nav
+        class="navbar fixed top-0 left-0 right-0 z-50 py-4 px-8 flex justify-between items-center"
+      >
+        <div class="navbar-brand-text text-xl font-bold">CodeClash 2025</div>
+        <ul class="navbar-links flex space-x-6 text-base font-medium">
+          <li><a href="#" class="nav-link">Home</a></li>
+          <li><a href="#why-participate" class="nav-link">About</a></li>
+          <li><a href="#competition-journey" class="nav-link">Timeline</a></li>
+          <li><a href="#prize-pool" class="nav-link">Prizes</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+        <a href="#" class="register-button-nav text-base font-semibold"
+          >Register Now</a
+        >
+
+        <!--  Added mobile menu toggle -->
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+      </nav>
 
+      <!--  Added mobile menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" onclick="toggleMobileMenu()">
+          &times;
+        </button>
+        <ul>
+          <li><a href="#" onclick="toggleMobileMenu()">Home</a></li>
+          <li>
+            <a href="#why-participate" onclick="toggleMobileMenu()">About</a>
+          </li>
+          <li>
+            <a href="#competition-journey" onclick="toggleMobileMenu()"
+              >Timeline</a
+            >
+          </li>
+          <li><a href="#prize-pool" onclick="toggleMobileMenu()">Prizes</a></li>
+          <li><a href="#faq" onclick="toggleMobileMenu()">FAQ</a></li>
+          <li>
+            <a
+              href="#"
+              class="register-button px-6 py-3 rounded-full text-white font-bold"
+              onclick="toggleMobileMenu()"
+              >Register Now</a
+            >
+          </li>
+        </ul>
+      </div>
 
-        <!-- Hero Section - Responsive adjustments for mobile -->
-        <section class="hero-section relative h-screen flex flex-col items-center justify-center text-center p-4">
-            <!-- Background Aurora/Glow effects -->
-            <div class="hero-background-aurora-1"></div>
-            <div class="hero-background-aurora-2"></div>
-            <div class="hero-background-glow"></div>
+      <!-- Hero Section - Keeping elements as per your last request -->
+      <section
+        class="hero-section relative h-screen flex flex-col items-center justify-center text-center p-4"
+      >
+        <!-- Background Aurora/Glow effects -->
+        <div class="hero-background-aurora-1"></div>
+        <div class="hero-background-aurora-2"></div>
+        <div class="hero-background-glow"></div>
 
-            <div class="relative z-10 flex flex-col items-center space-y-6">
-                <h1 class="codeclash-title">
-                    CodeClash
-                </h1>
-                <p class="max-w-3xl text-lg md:text-xl text-text-light/80 mt-4 mb-8">
-                    The Ultimate State-Level Solo Coding Competition. Where Code Meets Innovation.
+        <div class="relative z-10 flex flex-col items-center space-y-6">
+          <h1 class="codeclash-title">CodeClash</h1>
+          <!-- 2025 1.0 text is removed -->
+          <p class="max-w-3xl text-lg md:text-xl text-text-light/80 mt-4 mb-8">
+            The Ultimate State-Level Solo Coding Competition. Where Code Meets
+            Innovation.
+          </p>
+
+          <!-- Register Button -->
+          <a
+            href="#"
+            class="register-button px-10 py-4 rounded-full text-white text-xl font-bold transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-xl hover:scale-105 transform"
+          >
+            Register Now
+          </a>
+
+          <p class="text-sm text-text-muted mt-8">
+            Organized by
+            <span class="text-primary-blue font-semibold">CESA</span> &bull;
+            BVCOE Navi Mumbai
+          </p>
+        </div>
+      </section>
+
+      <!-- Why Participate Section (UNCHANGED) -->
+      <section id="why-participate" class="py-20 bg-dark-blue-card">
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Why Participate?</h2>
+          <p
+            class="text-lg md:text-xl text-center text-text-muted max-w-4xl mx-auto mb-16"
+          >
+            CodeClash 2025 is not just a competition—it's your gateway to
+            excellence in coding and problem-solving.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+              class="glass-effect glass-effect-hover p-8 text-center flex flex-col items-center"
+            >
+              <span class="text-primary-blue text-5xl mb-4"
+                ><i class="fas fa-award"></i
+              ></span>
+              <h3 class="text-2xl font-semibold mb-2">
+                State-Level Recognition
+              </h3>
+              <p class="text-text-muted">
+                Compete at the state level and gain recognition among
+                Maharashtra's brightest coding minds.
+              </p>
+            </div>
+            <div
+              class="glass-effect glass-effect-hover p-8 text-center flex flex-col items-center"
+            >
+              <span class="text-primary-blue text-5xl mb-4"
+                ><i class="fas fa-trophy"></i
+              ></span>
+              <h3 class="text-2xl font-semibold mb-2">Premium Rewards</h3>
+              <p class="text-text-muted">
+                Win exciting prizes, certificates, and accessories. Top
+                performers get exclusive rewards!
+              </p>
+            </div>
+            <div
+              class="glass-effect glass-effect-hover p-8 text-center flex flex-col items-center"
+            >
+              <span class="text-primary-blue text-5xl mb-4"
+                ><i class="fas fa-laptop-code"></i
+              ></span>
+              <h3 class="text-2xl font-semibold mb-2">Professional Setup</h3>
+              <p class="text-text-muted">
+                High-end monitors and accessories provided. Focus purely on your
+                coding skills.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Competition Journey Section (UNCHANGED) -->
+      <section id="competition-journey" class="py-20 bg-dark-blue-bg">
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Competition Journey</h2>
+          <p
+            class="text-lg md:text-xl text-center text-text-muted max-w-4xl mx-auto mb-16"
+          >
+            Follow the complete roadmap from registration to coding glory. Each
+            phase brings you closer to coding mastery.
+          </p>
+
+          <!-- Timeline -->
+          <div class="relative max-w-5xl mx-auto">
+            <!-- Vertical Line -->
+            <div class="timeline-line"></div>
+
+            <!-- Timeline Items -->
+            <div class="timeline-item flex items-center w-full my-12">
+              <div class="w-1/2 pr-8 text-right">
+                <div
+                  class="glass-effect p-6 inline-block text-left animate-slideInLeft"
+                >
+                  <h3 class="text-xl font-semibold text-primary-blue mb-2">
+                    Phase 1: Registration Opens
+                  </h3>
+                  <p class="text-sm text-text-muted mb-2">10:00 AM</p>
+                  <ul
+                    class="list-disc list-inside text-text-muted text-sm space-y-1"
+                  >
+                    <li>Early bird pricing</li>
+                    <li>Team formation</li>
+                    <li>Discord access</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="timeline-bullet bg-primary-blue">
+                <span class="text-white text-lg font-bold">1</span>
+              </div>
+              <div class="w-1/2 pl-8">
+                <p class="text-lg font-mono text-primary-blue mb-2">
+                  September 8, 2025
                 </p>
-
-                <!-- Register Button (in Hero Section) -->
-                <a href="https://unstop.com/p/codeclash-2025-bharati-vidyapeeth-college-of-engineering-bvcoe-navi-mumbai-1538643 " class="register-button px-10 py-4 rounded-full text-white text-xl font-bold transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-xl hover:scale-105 transform">
-                    Register Now
-                </a>
-
-                <p class="text-sm text-text-muted mt-8">Organized by <span class="text-primary-blue font-semibold">CESA</span> &bull; BVCOE Navi Mumbai</p>
+                <p class="text-sm text-text-muted">Phase 1</p>
+              </div>
             </div>
-        </section>
 
-        <!-- Why Participate Section (UNCHANGED) -->
-        <section id="why-participate" class="py-20 bg-dark-blue-card">
-            <div class="container mx-auto px-4">
-                <h2 class="section-title">Why Participate?</h2>
-                <p class="text-lg md:text-xl text-center text-text-muted max-w-4xl mx-auto mb-16">
-                    CodeClash 2025 is not just a competition—it's your gateway to excellence in coding and problem-solving.
+            <div class="timeline-item flex items-center w-full my-12">
+              <div class="w-1/2 pr-8 text-right order-2">
+                <p class="text-lg font-mono text-primary-blue mb-2">
+                  September 9, 2025
                 </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="glass-effect glass-effect-hover p-8 text-center flex flex-col items-center">
-                        <span class="text-primary-blue text-5xl mb-4"><i class="fas fa-award"></i></span>
-                        <h3 class="text-2xl font-semibold mb-2">State-Level Recognition</h3>
-                        <p class="text-text-muted">Compete at the state level and gain recognition among Maharashtra's brightest coding minds.</p>
-                    </div>
-                    <div class="glass-effect glass-effect-hover p-8 text-center flex flex-col items-center">
-                        <span class="text-primary-blue text-5xl mb-4"><i class="fas fa-trophy"></i></span>
-                        <h3 class="text-2xl font-semibold mb-2">Premium Rewards</h3>
-                        <p class="text-text-muted">Win exciting prizes, certificates, and accessories. Top performers get exclusive rewards!</p>
-                    </div>
-                    <div class="glass-effect glass-effect-hover p-8 text-center flex flex-col items-center">
-                        <span class="text-primary-blue text-5xl mb-4"><i class="fas fa-laptop-code"></i></span>
-                        <h3 class="text-2xl font-semibold mb-2">Professional Setup</h3>
-                        <p class="text-text-muted">High-end monitors and accessories provided. Focus purely on your coding skills.</p>
-                    </div>
+                <p class="text-sm text-text-muted">Phase 2</p>
+              </div>
+              <div class="timeline-bullet bg-accent-purple">
+                <span class="text-white text-lg font-bold">2</span>
+              </div>
+              <div class="w-1/2 pl-8 order-1">
+                <div
+                  class="glass-effect p-6 inline-block text-left animate-slideInRight"
+                >
+                  <h3 class="text-xl font-semibold text-accent-purple mb-2">
+                    Phase 2: Registration Deadline
+                  </h3>
+                  <p class="text-sm text-text-muted mb-2">11:59 PM</p>
+                  <ul
+                    class="list-disc list-inside text-text-muted text-sm space-y-1"
+                  >
+                    <li>
+                      Final call for registration. After this, no new
+                      participants can join the competition.
+                    </li>
+                    <li>ID verification</li>
+                    <li>Team verification</li>
+                  </ul>
                 </div>
+              </div>
             </div>
-        </section>
 
-        <!-- Competition Journey Section - Mobile Optimized (Numbers removed) -->
-        <section id="competition-journey" class="py-20 bg-dark-blue-bg">
-            <div class="container mx-auto px-4">
-                <h2 class="section-title">Competition Journey</h2>
-                <p class="text-lg md:text-xl text-center text-text-muted max-w-4xl mx-auto mb-16">
-                    Follow the complete roadmap from registration to coding glory. Each phase brings you closer to coding mastery.
+            <div class="timeline-item flex items-center w-full my-12">
+              <div class="w-1/2 pr-8 text-right">
+                <div
+                  class="glass-effect p-6 inline-block text-left animate-slideInLeft"
+                >
+                  <h3 class="text-xl font-semibold text-primary-blue mb-2">
+                    Phase 3: Online Qualifying Round
+                  </h3>
+                  <p class="text-sm text-text-muted mb-2">2:00 PM - 5:00 PM</p>
+                  <ul
+                    class="list-disc list-inside text-text-muted text-sm space-y-1"
+                  >
+                    <li>Algorithmic challenges and problem-solving.</li>
+                    <li>Top performers advance.</li>
+                    <li>3 hours duration</li>
+                    <li>Final round announcement</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="timeline-bullet bg-primary-blue">
+                <span class="text-white text-lg font-bold">3</span>
+              </div>
+              <div class="w-1/2 pl-8">
+                <p class="text-lg font-mono text-primary-blue mb-2">
+                  September 10, 2025
                 </p>
-
-                <!-- Timeline -->
-                <div class="relative max-w-5xl mx-auto">
-                    <!-- Vertical Line -->
-                    <div class="timeline-line"></div>
-
-                    <!-- Timeline Items -->
-                    <div class="timeline-item flex items-center w-full my-12">
-                        <div class="w-1/2 pr-8 text-right">
-                            <div class="glass-effect p-6 inline-block text-left animate-slideInLeft">
-                                <h3 class="text-xl font-semibold text-primary-blue mb-2">Phase 1: Registration Opens</h3>
-                                <p class="text-sm text-text-muted mb-2">10:00 AM</p>
-                                <ul class="list-disc list-inside text-text-muted text-sm space-y-1">
-                                    <li>Early bird pricing</li>
-                                    <li>Team formation</li>
-                                    <li>Discord access</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="timeline-bullet bg-primary-blue">
-                            <!-- Number removed as requested -->
-                        </div>
-                        <div class="w-1/2 pl-8">
-                            <p class="text-lg font-mono text-primary-blue mb-2">September 8, 2025</p>
-                            <p class="text-sm text-text-muted">Phase 1</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item flex items-center w-full my-12">
-                        <div class="w-1/2 pr-8 text-right order-2">
-                            <p class="text-lg font-mono text-primary-blue mb-2">September 9, 2025</p>
-                            <p class="text-sm text-text-muted">Phase 2</p>
-                        </div>
-                        <div class="timeline-bullet bg-accent-purple">
-                            <!-- Number removed as requested -->
-                        </div>
-                        <div class="w-1/2 pl-8 order-1">
-                            <div class="glass-effect p-6 inline-block text-left animate-slideInRight">
-                                <h3 class="text-xl font-semibold text-accent-purple mb-2">Phase 2: Registration Deadline</h3>
-                                <p class="text-sm text-text-muted mb-2">11:59 PM</p>
-                                <ul class="list-disc list-inside text-text-muted text-sm space-y-1">
-                                    <li>Final call for registration. After this, no new participants can join the competition.</li>
-                                    <li>ID verification</li>
-                                    <li>Team verification</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item flex items-center w-full my-12">
-                        <div class="w-1/2 pr-8 text-right">
-                            <div class="glass-effect p-6 inline-block text-left animate-slideInLeft">
-                                <h3 class="text-xl font-semibold text-primary-blue mb-2">Phase 3: Online Qualifying Round</h3>
-                                <p class="text-sm text-text-muted mb-2">2:00 PM - 5:00 PM</p>
-                                <ul class="list-disc list-inside text-text-muted text-sm space-y-1">
-                                    <li>Algorithmic challenges and problem-solving.</li>
-                                    <li>Top performers advance.</li>
-                                    <li>3 hours duration</li>
-                                    <li>Final round announcement</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="timeline-bullet bg-primary-blue">
-                            <!-- Number removed as requested -->
-                        </div>
-                        <div class="w-1/2 pl-8">
-                            <p class="text-lg font-mono text-primary-blue mb-2">September 10, 2025</p>
-                            <p class="text-sm text-text-muted">Phase 3</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item flex items-center w-full my-12">
-                        <div class="w-1/2 pr-8 text-right order-2">
-                            <p class="text-lg font-mono text-primary-blue mb-2">September 15, 2025</p>
-                            <p class="text-sm text-text-muted">Phase 4</p>
-                        </div>
-                        <div class="timeline-bullet bg-accent-purple">
-                            <!-- Number removed as requested -->
-                        </div>
-                        <div class="w-1/2 pl-8 order-1">
-                            <div class="glass-effect p-6 inline-block text-left animate-slideInRight">
-                                <h3 class="text-xl font-semibold text-accent-purple mb-2">Phase 4: Offline Grand Finale</h3>
-                                <p class="text-sm text-text-muted mb-2">10:00 AM - 4:00 PM</p>
-                                <ul class="list-disc list-inside text-text-muted text-sm space-y-1">
-                                    <li>Ultimate coding championship at BVCOE Navi Mumbai.</li>
-                                    <li>Finalists compete for the ₹15,000 prize pool.</li>
-                                    <li>4 hours challenge</li>
-                                    <li>Live judging</li>
-                                    <li>Prize ceremony</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <p class="text-sm text-text-muted">Phase 3</p>
+              </div>
             </div>
-        </section>
 
-        <!-- Prize Pool & Rewards Section (UNCHANGED) -->
-        <section id="prize-pool" class="py-20 bg-dark-blue-card">
-            <div class="container mx-auto px-4">
-                <h2 class="section-title">Prize Pool & Rewards</h2>
-                <div class="text-center mb-16">
-                    <span class="prize-amount animate-pulseGlow">₹15,000</span>
-                    <p class="text-lg text-text-muted mt-2">Total prize pool with exciting rewards for winners</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                    <div class="glass-effect p-8 text-center flex flex-col items-center">
-                        <h3 class="text-3xl font-bold text-primary-green mb-4">1st Place</h3>
-                        <p class="text-4xl font-bold text-text-light mb-4">₹8,000</p>
-                        <ul class="list-disc list-inside text-text-muted text-lg space-y-1">
-                            <li>Winner Certificate</li>
-                            <li>Premium Accessories</li>
-                            <li>Special Recognition</li>
-                        </ul>
-                    </div>
-                    <div class="glass-effect p-8 text-center flex flex-col items-center">
-                        <h3 class="text-3xl font-bold text-primary-blue mb-4">2nd Place</h3>
-                        <p class="text-4xl font-bold text-text-light mb-4">₹5,000</p>
-                        <ul class="list-disc list-inside text-text-muted text-lg space-y-1">
-                            <li>Runner-up Certificate</li>
-                            <li>Tech Accessories</li>
-                            <li>Achievement Badge</li>
-                        </ul>
-                    </div>
-                    <div class="glass-effect p-8 text-center flex flex-col items-center">
-                        <h3 class="text-3xl font-bold text-accent-purple mb-4">3rd Place</h3>
-                        <p class="text-4xl font-bold text-text-light mb-4">₹2,000</p>
-                        <ul class="list-disc list-inside text-text-muted text-lg space-y-1">
-                            <li>Achievement Certificate</li>
-                            <li>Coding Accessories</li>
-                            <li>Recognition</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="glass-effect p-8 text-center max-w-2xl mx-auto">
-                    <h3 class="text-2xl font-semibold mb-4">All Participants</h3>
-                    <div class="flex justify-around text-lg text-text-muted">
-                        <span>Participation Certificate</span>
-                        <span>Coding Experience</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Competition Details Section (UNCHANGED) -->
-        <section class="py-20 bg-dark-blue-bg">
-            <div class="container mx-auto px-4">
-                <h2 class="section-title">Competition Details</h2>
-                <p class="text-lg md:text-xl text-center text-text-muted max-w-4xl mx-auto mb-16">
-                    Essential information about CodeClash 2025
+            <div class="timeline-item flex items-center w-full my-12">
+              <div class="w-1/2 pr-8 text-right order-2">
+                <p class="text-lg font-mono text-primary-blue mb-2">
+                  September 15, 2025
                 </p>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="glass-effect p-6 text-center">
-                        <h3 class="text-2xl font-semibold mb-2">Solo Competition</h3>
-                        <p class="text-text-muted">Individual participation only</p>
-                    </div>
-                    <div class="glass-effect p-6 text-center">
-                        <h3 class="text-2xl font-semibold mb-2">Registration Fee</h3>
-                        <p class="text-text-muted">Only ₹100 per participant</p>
-                    </div>
-                    <div class="glass-effect p-6 text-center">
-                        <h3 class="text-2xl font-semibold mb-2">Premium Setup</h3>
-                        <p class="text-text-muted">High-end monitors & accessories</p>
-                    </div>
-                    <div class="glass-effect p-6 text-center">
-                        <h3 class="text-2xl font-semibold mb-2">State Level</h3>
-                        <p class="text-text-muted">Maharashtra's biggest coding event</p>
-                    </div>
+                <p class="text-sm text-text-muted">Phase 4</p>
+              </div>
+              <div class="timeline-bullet bg-accent-purple">
+                <span class="text-white text-lg font-bold">4</span>
+              </div>
+              <div class="w-1/2 pl-8 order-1">
+                <div
+                  class="glass-effect p-6 inline-block text-left animate-slideInRight"
+                >
+                  <h3 class="text-xl font-semibold text-accent-purple mb-2">
+                    Phase 4: Offline Grand Finale
+                  </h3>
+                  <p class="text-sm text-text-muted mb-2">10:00 AM - 4:00 PM</p>
+                  <ul
+                    class="list-disc list-inside text-text-muted text-sm space-y-1"
+                  >
+                    <li>Ultimate coding championship at BVCOE Navi Mumbai.</li>
+                    <li>Finalists compete for the ₹15,000 prize pool.</li>
+                    <li>4 hours challenge</li>
+                    <li>Live judging</li>
+                    <li>Prize ceremony</li>
+                  </ul>
                 </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- Frequently Asked Questions Section (UNCHANGED) -->
-        <section id="faq" class="py-20 bg-dark-blue-card">
-            <div class="container mx-auto px-4">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="text-lg md:text-xl text-center text-text-muted max-w-4xl mx-auto mb-16">
-                    Get answers to common questions about CodeClash 2025
+      <!-- Prize Pool & Rewards Section (UNCHANGED) -->
+      <section id="prize-pool" class="py-20 bg-dark-blue-card">
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Prize Pool & Rewards</h2>
+          <div class="text-center mb-16">
+            <span class="prize-amount animate-pulseGlow">₹15,000</span>
+            <p class="text-lg text-text-muted mt-2">
+              Total prize pool with exciting rewards for winners
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div
+              class="glass-effect p-8 text-center flex flex-col items-center"
+            >
+              <h3 class="text-3xl font-bold text-primary-green mb-4">
+                1st Place
+              </h3>
+              <p class="text-4xl font-bold text-text-light mb-4">₹8,000</p>
+              <ul
+                class="list-disc list-inside text-text-muted text-lg space-y-1"
+              >
+                <li>Winner Certificate</li>
+                <li>Premium Accessories</li>
+                <li>Special Recognition</li>
+              </li>
+            </div>
+            <div
+              class="glass-effect p-8 text-center flex flex-col items-center"
+            >
+              <h3 class="text-3xl font-bold text-primary-blue mb-4">
+                2nd Place
+              </h3>
+              <p class="text-4xl font-bold text-text-light mb-4">₹5,000</p>
+              <ul
+                class="list-disc list-inside text-text-muted text-lg space-y-1"
+              >
+                <li>Runner-up Certificate</li>
+                <li>Tech Accessories</li>
+                <li>Achievement Badge</li>
+              </ul>
+            </div>
+            <div
+              class="glass-effect p-8 text-center flex flex-col items-center"
+            >
+              <h3 class="text-3xl font-bold text-accent-purple mb-4">
+                3rd Place
+              </h3>
+              <p class="text-4xl font-bold text-text-light mb-4">₹2,000</p>
+              <ul
+                class="list-disc list-inside text-text-muted text-lg space-y-1"
+              >
+                <li>Achievement Certificate</li>
+                <li>Coding Accessories</li>
+                <li>Recognition</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="glass-effect p-8 text-center max-w-2xl mx-auto">
+            <h3 class="text-2xl font-semibold mb-4">All Participants</h3>
+            <div class="flex justify-around text-lg text-text-muted">
+              <span>Participation Certificate</span>
+              <span>Coding Experience</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Competition Details Section (UNCHANGED) -->
+      <section class="py-20 bg-dark-blue-bg">
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Competition Details</h2>
+          <p
+            class="text-lg md:text-xl text-center text-text-muted max-w-4xl mx-auto mb-16"
+          >
+            Essential information about CodeClash 2025
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="glass-effect p-6 text-center">
+              <h3 class="text-2xl font-semibold mb-2">Solo Competition</h3>
+              <p class="text-text-muted">Individual participation only</p>
+            </div>
+            <div class="glass-effect p-6 text-center">
+              <h3 class="text-2xl font-semibold mb-2">Registration Fee</h3>
+              <p class="text-text-muted">Only ₹100 per participant</p>
+            </div>
+            <div class="glass-effect p-6 text-center">
+              <h3 class="text-2xl font-semibold mb-2">Premium Setup</h3>
+              <p class="text-text-muted">High-end monitors & accessories</p>
+            </div>
+            <div class="glass-effect p-6 text-center">
+              <h3 class="text-2xl font-semibold mb-2">State Level</h3>
+              <p class="text-text-muted">Maharashtra's biggest coding event</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Frequently Asked Questions Section (UNCHANGED) -->
+      <section id="faq" class="py-20 bg-dark-blue-card">
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p
+            class="text-lg md:text-xl text-center text-text-muted max-w-4xl mx-auto mb-16"
+          >
+            Get answers to common questions about CodeClash 2025
+          </p>
+
+          <div class="max-w-4xl mx-auto space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="glass-effect p-6 cursor-pointer" data-faq-toggle="faq1">
+              <div class="flex justify-between items-center">
+                <h3 class="text-xl font-semibold">
+                  What programming languages are allowed?
+                </h3>
+                <span
+                  data-faq-arrow="faq1"
+                  class="text-text-light transform transition-transform duration-300"
+                  >▼</span
+                >
+              </div>
+              <div data-faq-content="faq1" class="mt-4 text-text-muted hidden">
+                <p>
+                  All popular programming languages including C, C++, Java,
+                  Python, JavaScript (Node.js), Go, and Rust are allowed.
+                  Participants are responsible for bringing their own
+                  compilers/IDEs if specific versions are required beyond
+                  standard installations.
                 </p>
-
-                <div class="max-w-4xl mx-auto space-y-4">
-                    <!-- FAQ Item 1 -->
-                    <div class="glass-effect p-6 cursor-pointer" data-faq-toggle="faq1">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-semibold">What programming languages are allowed?</h3>
-                            <span data-faq-arrow="faq1" class="text-text-light transform transition-transform duration-300">▼</span>
-                        </div>
-                        <div data-faq-content="faq1" class="mt-4 text-text-muted hidden">
-                            <p>All popular programming languages including C, C++, Java, Python.</p>
-                        </div>
-                    </div>
-
-                    <!-- FAQ Item 2 -->
-                    <div class="glass-effect p-6 cursor-pointer" data-faq-toggle="faq2">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-semibold">How do I register for the competition?</h3>
-                            <span data-faq-arrow="faq2" class="text-text-light transform transition-transform duration-300">▼</span>
-                        </div>
-                        <div data-faq-content="faq2" class="mt-4 text-text-muted hidden">
-                            <p>Registration is done online via our portal. Click the "Register Now" button, fill in your details, and complete the payment process. You will receive a confirmation email upon successful registration.</p>
-                        </div>
-                    </div>
-
-                    <!-- FAQ Item 3 -->
-                    <div class="glass-effect p-6 cursor-pointer" data-faq-toggle="faq3">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-semibold">What should I bring for the offline round?</h3>
-                            <span data-faq-arrow="faq3" class="text-text-light transform transition-transform duration-300">▼</span>
-                        </div>
-                        <div data-faq-content="faq3" class="mt-4 text-text-muted hidden">
-                            <p>For the offline Grand Finale, participants should bring their college ID. All necessary hardware (laptops, monitors, etc.) and software setups will be provided.</p>
-                        </div>
-                    </div>
-
-                    
-            
-
-                    <!-- FAQ Item 5 -->
-                    <div class="glass-effect p-6 cursor-pointer" data-faq-toggle="faq5">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-xl font-semibold">When will results be announced?</h3>
-                            <span data-faq-arrow="faq5" class="text-text-light transform transition-transform duration-300">▼</span>
-                        </div>
-                        <div data-faq-content="faq5" class="mt-4 text-text-muted hidden">
-                            <p>Results will be announced live at the end of the Grand Finale event on September 15, 2025. Official announcements will also be made on our social media channels.</p>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </section>
 
-        <!-- Bottom Call to Action (UNCHANGED) -->
-        <section class="py-20 bg-dark-blue-bg text-center">
-            <div class="container mx-auto px-4">
-                <h2 class="section-title">Ready to Begin Your Journey?</h2>
-                <p class="text-lg text-text-muted max-w-3xl mx-auto mb-10">
-                    Join hundreds of passionate coders in Maharashtra's premier coding competition. Transform your skills, compete with the best, and claim your place among coding champions.
+            <!-- FAQ Item 2 -->
+            <div class="glass-effect p-6 cursor-pointer" data-faq-toggle="faq2">
+              <div class="flex justify-between items-center">
+                <h3 class="text-xl font-semibold">
+                  How do I register for the competition?
+                </h3>
+                <span
+                  data-faq-arrow="faq2"
+                  class="text-text-light transform transition-transform duration-300"
+                  >▼</span
+                >
+              </div>
+              <div data-faq-content="faq2" class="mt-4 text-text-muted hidden">
+                <p>
+                  Registration is done online via our portal. Click the
+                  "Register Now" button, fill in your details, and complete the
+                  payment process. You will receive a confirmation email upon
+                  successful registration.
                 </p>
-                <a href="https://unstop.com/p/codeclash-2025-bharati-vidyapeeth-college-of-engineering-bvcoe-navi-mumbai-1538643 " class="register-button px-12 py-4 rounded-full text-white text-xl font-bold transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-xl hover:scale-105 transform">
-                    Register Now - ₹100
-                </a>
-                <p class="text-sm text-text-muted mt-4">Registration closes September 9, 2025.</p>
+              </div>
             </div>
-        </section>
+
+            <!-- FAQ Item 3 -->
+            <div class="glass-effect p-6 cursor-pointer" data-faq-toggle="faq3">
+              <div class="flex justify-between items-center">
+                <h3 class="text-xl font-semibold">
+                  What should I bring for the offline round?
+                </h3>
+                <span
+                  data-faq-arrow="faq3"
+                  class="text-text-light transform transition-transform duration-300"
+                  >▼</span
+                >
+              </div>
+              <div data-faq-content="faq3" class="mt-4 text-text-muted hidden">
+                <p>
+                  For the offline Grand Finale, participants should bring their
+                  college ID. All necessary hardware (laptops, monitors, etc.)
+                  and software setups will be provided.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="glass-effect p-6 cursor-pointer" data-faq-toggle="faq4">
+              <div class="flex justify-between items-center">
+                <h3 class="text-xl font-semibold">
+                  Can I participate if I'm not from Maharashtra?
+                </h3>
+                <span
+                  data-faq-arrow="faq4"
+                  class="text-text-light transform transition-transform duration-300"
+                  >▼</span
+                >
+              </div>
+              <div data-faq-content="faq4" class="mt-4 text-text-muted hidden">
+                <p>
+                  No, CodeClash 2025 is exclusively for students from colleges
+                  within Maharashtra state.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="glass-effect p-6 cursor-pointer" data-faq-toggle="faq5">
+              <div class="flex justify-between items-center">
+                <h3 class="text-xl font-semibold">
+                  When will results be announced?
+                </h3>
+                <span
+                  data-faq-arrow="faq5"
+                  class="text-text-light transform transition-transform duration-300"
+                  >▼</span
+                >
+              </div>
+              <div data-faq-content="faq5" class="mt-4 text-text-muted hidden">
+                <p>
+                  Results will be announced live at the end of the Grand Finale
+                  event on September 15, 2025. Official announcements will also
+                  be made on our social media channels.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Call to Action (UNCHANGED) -->
+      <section class="py-20 bg-dark-blue-bg text-center">
+        <div class="container mx-auto px-4">
+          <h2 class="section-title">Ready to Begin Your Journey?</h2>
+          <p class="text-lg text-text-muted max-w-3xl mx-auto mb-10">
+            Join hundreds of passionate coders in Maharashtra's premier coding
+            competition. Transform your skills, compete with the best, and claim
+            your place among coding champions.
+          </p>
+          <a
+            href="#"
+            class="register-button px-12 py-4 rounded-full text-white text-xl font-bold transition-all duration-300 hover:bg-opacity-90 shadow-lg hover:shadow-xl hover:scale-105 transform"
+          >
+            Register Now - ₹100
+          </a>
+          <p class="text-sm text-text-muted mt-4">
+            Registration closes September 9, 2025.
+          </p>
+        </div>
+      </section>
     </div>
 
     <!-- Your Custom JavaScript -->
     <script src="{% static 'core/js/codeclash_scripts.js' %}"></script>
-</body>
+
+    <!--  Added mobile menu functionality -->
+    <script>
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        mobileMenu.classList.toggle("active");
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = mobileMenu.classList.contains("active")
+          ? "hidden"
+          : "auto";
+      }
+
+      // Remove duplicate event listeners for mobile menu links
+      // The onclick="toggleMobileMenu()" attribute in HTML already handles closing the menu
+
+      // Close mobile menu on window resize if it's open
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          const mobileMenu = document.getElementById("mobileMenu");
+          mobileMenu.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+      });
+    </script>
+  </body>
 </html>
