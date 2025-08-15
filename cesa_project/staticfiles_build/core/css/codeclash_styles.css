@@ -68,103 +68,169 @@ h1, h2, h3, h4, h5, h6 {
 .font-medium { font-weight: 500; }
 
 
-/* --- Navbar - ORIGINAL DESKTOP LAYOUT (always visible) --- */
+/* --- Navbar - MOBILE FIRST ADJUSTMENTS (UNCHANGED from previous, assuming this is now desired) --- */
 .navbar {
-    background-color: #0A0F1F; /* Solid dark background matching page body */
-    backdrop-filter: blur(0px); /* No blur for a solid look */
+    background-color: #0A0F1F;
+    backdrop-filter: blur(0px);
     -webkit-backdrop-filter: blur(0px);
-    border-bottom: none; /* No border */
-    box-shadow: none; /* No shadow */
-    padding-top: 1.25rem; /* More padding */
-    padding-bottom: 1.25rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    display: flex; /* Ensure it's always a flex container */
-    justify-content: space-between; /* Space out items */
-    align-items: center; /* Vertically align items */
+    border-bottom: none;
+    box-shadow: none;
+    padding-top: 1rem; /* Adjusted for mobile */
+    padding-bottom: 1rem; /* Adjusted for mobile */
+    padding-left: 1rem; /* Adjusted for mobile */
+    padding-right: 1rem; /* Adjusted for mobile */
+    position: fixed; /* Ensure it stays at top */
+    width: 100%; /* Full width */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50; /* High z-index to stay on top */
 }
+
 .navbar-brand-text {
-    /* CodeClash 2025 text has a gradient */
-    background-image: linear-gradient(to right, #8B5CF6, #06B6D4); /* Purple to Cyan */
+    background-image: linear-gradient(to right, #8B5CF6, #06B6D4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
     font-weight: 700;
-    font-size: 1.25rem; /* text-xl */
+    font-size: 1.125rem; /* text-lg for mobile */
+    white-space: nowrap; /* Prevent "CodeClash 2025" from wrapping */
 }
+
+/* Hamburger Icon - Show on mobile, hide on desktop */
+.hamburger-menu {
+    display: block; /* Show by default (mobile first) */
+    font-size: 1.5rem;
+    color: #E5E7EB;
+    cursor: pointer;
+    z-index: 51; /* Higher than menu container */
+    margin-left: auto; /* Pushes to the right */
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* Container for nav links and register button - MOBILE */
+.navbar-menu-container {
+    display: none; /* Hidden by default on mobile */
+    position: absolute; /* Take over full screen/area below navbar */
+    top: 100%; /* Below the navbar itself */
+    left: 0;
+    width: 100%;
+    background-color: #0A0F1F; /* Same as navbar for seamless transition */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center content horizontally */
+    padding: 1rem 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 49;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition */
+    transform: translateY(-100%); /* Start off-screen upwards */
+    opacity: 0; /* Make it invisible */
+    height: auto; /* Adjust height based on content */
+    max-height: calc(100vh - 64px); /* Max height to fit viewport, assuming 64px navbar height */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+.navbar-menu-container.active {
+    display: flex; /* Show when active via JS */
+    transform: translateY(0); /* Slide into view */
+    opacity: 1; /* Make it visible */
+}
+
+/* Nav links within the menu container - MOBILE */
 .navbar-links {
-    display: flex; /* Make links a flex container */
-    space-x: 6; /* Tailwind space-x-6 (1.5rem) */
-    margin-left: auto; /* Push links to center/right */
-    margin-right: 1.5rem; /* Space between links and button */
+    flex-direction: column; /* Stack links vertically */
+    width: 100%; /* Take full width of its parent container */
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0; /* Reset internal padding */
     list-style: none; /* Remove default list style */
-    padding: 0; /* Remove default padding */
+}
+.navbar-links li {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 0; /* Vertical padding for each link */
 }
 .navbar-links li a {
-    color: #E5E7EB; /* Light text color */
-    font-size: 1rem; /* text-base */
-    font-weight: 500; /* font-medium */
-    position: relative;
-    padding-bottom: 0.25rem; /* Space for underline */
-    transition: color 0.3s ease;
-    display: inline-block; /* Allows vertical padding/underline */
-    text-decoration: none; /* Remove default underline */
-    white-space: nowrap; /* Prevent text wrapping within nav links */
+    font-size: 1.125rem; /* Larger font for mobile links */
+    display: block; /* Make the whole padding area clickable */
+    text-decoration: none;
+    color: #E5E7EB;
 }
-/* Add dot separator between links using ::before */
-.navbar-links li:not(:first-child) a::before {
-    content: '\2022'; /* Bullet point character */
-    color: #A1A1AA; /* Muted color for bullet */
-    margin-right: 0.75rem; /* Space between bullet and text */
-    font-size: 0.75rem; /* Smaller bullet */
-    position: relative;
-    top: -1px; /* Slight vertical adjustment */
+.navbar-links li a::before { /* Remove bullet point for mobile */
+    content: none !important;
 }
-/* Gradient underline on hover for nav links */
-.navbar-links li a.nav-link::after { /* Use .nav-link for specificity if other a tags exist */
-    content: '';
-    position: absolute;
-    bottom: -2px; /* Position below text */
-    left: 0; /* Start from left */
-    width: 0; /* Initially no width */
-    height: 2px; /* Thickness of underline */
-    background-image: linear-gradient(to right, #8B5CF6, #06B6D4); /* Gradient underline */
-    transition: width 0.3s ease;
-    border-radius: 1px;
-}
-.navbar-links li a.nav-link:hover::after,
-.navbar-links li a.active.nav-link::after { /* Add active state if Django adds it */
-    width: 100%; /* Expand to full width on hover */
-}
-.navbar-links li a:hover {
-    color: #8B5CF6; /* Highlight color on hover (purple part of gradient) */
+.navbar-links li a.nav-link::after { /* Hide hover underline for mobile links */
+    display: none;
 }
 
-/* Register Button in Navbar (UNCHANGED) */
-.register-button-nav {
-    background-image: linear-gradient(to right, #8B5CF6, #06B6D4); /* Purple to Cyan Gradient */
-    color: #fff;
-    padding: 0.625rem 1.25rem; /* py-2.5 px-5 (approximately) */
-    border-radius: 0.5rem; /* rounded-lg (8px) */
-    font-size: 0.875rem; /* text-sm */
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4); /* Shadow matching gradient */
-}
-.register-button-nav:hover {
-    background-position: 100% 0; /* Shift gradient on hover */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(139, 92, 246, 0.6);
-}
-/* For gradient animation */
-.register-button-nav {
-    background-size: 200% auto; /* Make background larger for shifting */
-    transition: background-position 0.5s ease-out, transform 0.3s ease, box-shadow 0.3s ease;
+/* Register button within the menu container - MOBILE */
+.navbar-menu-container .register-button-nav {
+    margin-top: 1.5rem; /* Space below links */
+    width: auto; /* Let button size itself */
+    padding: 0.75rem 1.5rem; /* Adjust button padding */
+    font-size: 1rem; /* Adjust button font size */
 }
 
 
-/* --- Hero Section - Original responsive sizes for text --- */
+/* Desktop styles for Navbar (min-width: 768px for md: from Tailwind) */
+@media (min-width: 768px) {
+    .navbar {
+        padding-top: 1.25rem; /* Revert to desktop padding */
+        padding-bottom: 1.25rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .navbar-brand-text {
+        font-size: 1.25rem; /* text-xl */
+    }
+    .hamburger-menu {
+        display: none; /* Hide hamburger on desktop */
+    }
+    .navbar-menu-container {
+        position: static; /* Reset positioning */
+        display: flex; /* Show on desktop */
+        flex-direction: row; /* Horizontal layout */
+        align-items: center;
+        width: auto; /* Auto width */
+        background-color: transparent; /* Transparent background */
+        box-shadow: none;
+        padding: 0;
+        margin-left: auto; /* Push links to center/right */
+        transform: translateY(0); /* Ensure visible */
+        opacity: 1; /* Ensure visible */
+        max-height: none; /* Remove height limit */
+        overflow-y: visible; /* No scrollbar */
+    }
+    .navbar-links {
+        flex-direction: row; /* Horizontal links */
+        width: auto;
+        margin-right: 1.5rem; /* Space between links and button */
+    }
+    .navbar-links li {
+        width: auto;
+        padding: 0;
+    }
+    .navbar-links li a {
+        font-size: 1rem; /* text-base */
+        padding-bottom: 0.25rem; /* Space for underline */
+    }
+    .navbar-links li:not(:first-child) a::before {
+        content: '\2022'; /* Bullet point character */
+    }
+    .navbar-links li a.nav-link::after { /* Show hover underline for desktop links */
+        display: block;
+    }
+    .navbar-menu-container .register-button-nav {
+        margin-top: 0;
+        padding: 0.625rem 1.25rem; /* py-2.5 px-5 */
+        font-size: 0.875rem; /* text-sm */
+    }
+}
+
+
+/* --- Hero Section - REFINED RESPONSIVE ADJUSTMENTS --- */
 .hero-section {
     height: 100vh;
     display: flex;
@@ -173,29 +239,28 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     text-align: center;
     position: relative;
-    overflow: hidden;
-    padding: 1rem; /* p-4 */
-    padding-top: 80px; /* Add padding to account for fixed navbar */
-    /* Adjust main hero background to match screenshot's blueish dark tone and subtle glow */
+    overflow: hidden; /* Important to hide overflow from background elements */
+    padding: 1rem; /* Add consistent padding for mobile */
+    padding-top: 80px; /* Account for fixed navbar height */
     background-color: #0A0F1F; /* Base dark blue */
     background-image: radial-gradient(circle at 15% 20%, rgba(79, 70, 229, 0.1) 0%, transparent 60%),
                       radial-gradient(circle at 85% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 60%);
     background-blend-mode: overlay; /* Subtle blend */
 }
 
-/* Background Aurora/Glow effects - FINE-TUNED FOR SCREENSHOT LOOK (UNCHANGED) */
+/* Background Aurora/Glow effects (UNCHANGED) */
 .hero-background-aurora-1 {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.1) 0%, transparent 35%); /* Very subtle purple */
-    opacity: 0.8; /* Make them slightly more present */
+    background: radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.1) 0%, transparent 35%);
+    opacity: 0.8;
     filter: blur(48px);
     animation: auroraMove 25s linear infinite;
 }
 .hero-background-aurora-2 {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 40%); /* Very subtle green */
+    background: radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 40%);
     opacity: 0.7;
     filter: blur(48px);
     animation: auroraMove 25s linear infinite;
@@ -204,48 +269,81 @@ h1, h2, h3, h4, h5, h6 {
 .hero-background-glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%); /* Center subtle glow */
+    background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
     opacity: 0.5;
     filter: blur(64px);
     animation: pulseGlow 10s ease-in-out infinite alternate;
 }
 
+/* CodeClash Title - Adjusted for optimal mobile visibility */
 .codeclash-title {
-    font-size: 6rem; /* text-6xl */
-    line-height: 1.2;
-    font-weight: 800; /* font-bold */
-    background-image: linear-gradient(to right, #8B5CF6, #06B6D4); /* Matches text gradient of navbar brand */
+    font-size: 2.8rem; /* Default for smaller mobile screens */
+    line-height: 1.1; /* Keep line height tight */
+    font-weight: 800;
+    background-image: linear-gradient(to right, #8B5CF6, #06B6D4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
     animation: textGlow 3s infinite ease-in-out;
+    margin-bottom: 0.5rem; /* Add a small positive margin */
+    padding: 0 0.5rem; /* Small horizontal padding to ensure fit */
+    white-space: normal; /* Ensure text can wrap if needed, though with these sizes it should fit */
 }
-@media (min-width: 768px) { /* md: */
-    .codeclash-title { font-size: 8rem; } /* md:text-8xl */
+
+/* Further reduce font size for very narrow screens */
+@media (max-width: 360px) { /* Examples: iPhone SE (1st gen), older small Androids */
+    .codeclash-title { font-size: 2.2rem; }
 }
-@media (min-width: 1024px) { /* lg: */
+@media (min-width: 361px) and (max-width: 480px) { /* Most modern smaller phones */
+    .codeclash-title { font-size: 2.8rem; }
+}
+@media (min-width: 481px) and (max-width: 767px) { /* Larger phones like iPhone Plus, Pixel XL */
+    .codeclash-title { font-size: 3.5rem; }
+}
+
+/* Hero Section Paragraph - Ensure it wraps and has good padding */
+.hero-section p {
+    max-width: 48rem; /* max-w-3xl */
+    color: rgba(229, 231, 235, 0.8);
+    font-size: 0.95rem; /* Slightly smaller for mobile readability */
+    line-height: 1.5; /* Ensure good line spacing */
+    padding: 0 1.5rem; /* Increased horizontal padding for better appearance */
+    margin-top: 1rem; /* Add margin from title */
+    margin-bottom: 2rem; /* Add margin to button */
+}
+
+/* Adjustments for desktop sizes */
+@media (min-width: 768px) {
+    .codeclash-title { font-size: 8rem; margin-bottom: 1.2; padding: 0; } /* md:text-8xl */
+    .hero-section p { font-size: 1.25rem; padding: 0; margin-top: 1.5rem; margin-bottom: 2rem;} /* Revert to desktop size */
+}
+@media (min-width: 1024px) {
     .codeclash-title { font-size: 10rem; } /* lg:text-[10rem] */
 }
 
-.hero-section p {
-    max-width: 48rem; /* max-w-3xl */
-    color: rgba(229, 231, 235, 0.8); /* text-light/80 */
-}
+/* Register Button in Hero Section - Adjusted for mobile touch target and fit */
 .register-button {
     background-color: #10B981; /* primary-green */
     color: #fff;
-    padding: 1rem 2.5rem; /* px-10 py-4 */
+    padding: 0.9rem 2.2rem; /* Slightly adjusted for better mobile touch target */
     border-radius: 9999px; /* rounded-full */
-    font-size: 1.25rem; /* text-xl */
-    font-weight: 700; /* font-bold */
+    font-size: 1.05rem; /* Slightly smaller font for mobile */
+    font-weight: 700;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+    min-width: 180px; /* Ensure a minimum touch target size */
 }
 .register-button:hover {
-    background-color: rgba(16, 185, 129, 0.9); /* bg-opacity-90 */
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 20px 25px rgba(0, 0, 0, 0.1); /* shadow-xl */
+    background-color: rgba(16, 185, 129, 0.9);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 20px 25px rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
+}
+@media (min-width: 768px) {
+    .register-button {
+        padding: 1rem 2.5rem;
+        font-size: 1.25rem;
+    }
 }
 
 
@@ -304,8 +402,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(79, 70, 229, 0.2);
 }
 
-/* --- Timeline Section - Mobile optimized, but now without bullet numbers --- */
-/* The general mobile responsive CSS for stacking elements is still here */
+/* --- Timeline Section - Mobile optimized, without bullet numbers (UNCHANGED) --- */
 .timeline-item {
     flex-direction: column; /* Stack children vertically */
     align-items: flex-start; /* Align all content to the left */
@@ -328,8 +425,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0; /* Remove horizontal margin */
     width: 2.5rem; /* Smaller bullet */
     height: 2.5rem; /* Smaller bullet */
-    /* Remove font size if there's no text now */
-    font-size: 0; /* Ensures no leftover space from old text */
+    font-size: 0; /* Ensures no leftover space from old text, as numbers are removed */
 }
 
 /* Adjust the vertical line for mobile */
@@ -375,7 +471,7 @@ h1, h2, h3, h4, h5, h6 {
         transform: none;
         width: 64px; /* Original size */
         height: 64px; /* Original size */
-        font-size: 1.25rem; /* Restore original font size if numbers were there, but now it's 0 because they are removed */
+        /* font-size: 1.25rem; */ /* No font size needed as numbers are removed */
     }
 
     .timeline-line {
@@ -554,9 +650,3 @@ h1, h2, h3, h4, h5, h6 {
 .animate-auroraMove { animation: auroraMove 25s linear infinite; }
 .animate-textGlow { animation: textGlow 3s infinite ease-in-out; }
 .animation-delay-500ms { animation-delay: 0.5s; } /* Specific delay utility */
-
-/* Responsive specific flex ordering for timeline (UNCHANGED - handled by new timeline CSS) */
-/* @media (min-width: 768px) {
-    .md\:order-1 { order: 1; }
-    .md\:order-2 { order: 2; }
-} */
