@@ -1,6 +1,4 @@
-/* codeclash_styles.css */
-
-/* --- Base & Global Styles --- */
+/* --- Base & Global Styles (UNCHANGED) --- */
 html, body {
     height: 100%;
     margin: 0;
@@ -12,7 +10,7 @@ html, body {
     color: #E5E7EB; /* text-light */
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar (UNCHANGED) */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -29,7 +27,7 @@ html, body {
     background: #3B82F6; /* A slightly darker blue for hover */
 }
 
-/* Container for max width & centering */
+/* Container for max width & centering (UNCHANGED) */
 .container {
     max-width: 1280px; /* Equivalent to Tailwind's max-w-7xl roughly */
     margin-left: auto;
@@ -38,13 +36,13 @@ html, body {
     padding-right: 1rem; /* px-4 */
 }
 
-/* Section padding */
+/* Section padding (UNCHANGED) */
 section {
     padding-top: 5rem; /* py-20 */
     padding-bottom: 5rem; /* py-20 */
 }
 
-/* Headings & Text Colors */
+/* Headings & Text Colors (UNCHANGED) */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Geist', sans-serif; /* Heading font */
     color: #E5E7EB; /* text-light */
@@ -58,11 +56,11 @@ h1, h2, h3, h4, h5, h6 {
 .text-accent-cyan { color: #06B6D4; }
 .text-white { color: #fff; }
 
-/* Background Colors */
+/* Background Colors (UNCHANGED) */
 .bg-dark-blue-bg { background-color: #0A0F1F; }
 .bg-dark-blue-card { background-color: #141A2D; }
 
-/* Font utilities */
+/* Font utilities (UNCHANGED) */
 .font-sans { font-family: 'DM Sans', sans-serif; }
 .font-mono { font-family: 'Fira Code', monospace; }
 .font-bold { font-weight: 700; }
@@ -70,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
 .font-medium { font-weight: 500; }
 
 
-/* --- Navbar - MATCHING LATEST SCREENSHOT EXACTLY --- */
+/* --- Navbar - ORIGINAL DESKTOP LAYOUT (always visible) --- */
 .navbar {
     background-color: #0A0F1F; /* Solid dark background matching page body */
     backdrop-filter: blur(0px); /* No blur for a solid look */
@@ -81,6 +79,9 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 1.25rem;
     padding-left: 2rem;
     padding-right: 2rem;
+    display: flex; /* Ensure it's always a flex container */
+    justify-content: space-between; /* Space out items */
+    align-items: center; /* Vertically align items */
 }
 .navbar-brand-text {
     /* CodeClash 2025 text has a gradient */
@@ -93,8 +94,12 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.25rem; /* text-xl */
 }
 .navbar-links {
+    display: flex; /* Make links a flex container */
+    space-x: 6; /* Tailwind space-x-6 (1.5rem) */
     margin-left: auto; /* Push links to center/right */
     margin-right: 1.5rem; /* Space between links and button */
+    list-style: none; /* Remove default list style */
+    padding: 0; /* Remove default padding */
 }
 .navbar-links li a {
     color: #E5E7EB; /* Light text color */
@@ -105,6 +110,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: color 0.3s ease;
     display: inline-block; /* Allows vertical padding/underline */
     text-decoration: none; /* Remove default underline */
+    white-space: nowrap; /* Prevent text wrapping within nav links */
 }
 /* Add dot separator between links using ::before */
 .navbar-links li:not(:first-child) a::before {
@@ -135,7 +141,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #8B5CF6; /* Highlight color on hover (purple part of gradient) */
 }
 
-/* Register Button in Navbar */
+/* Register Button in Navbar (UNCHANGED) */
 .register-button-nav {
     background-image: linear-gradient(to right, #8B5CF6, #06B6D4); /* Purple to Cyan Gradient */
     color: #fff;
@@ -158,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* --- Hero Section - Background Adjusted to Match Image --- */
+/* --- Hero Section - Original responsive sizes for text --- */
 .hero-section {
     height: 100vh;
     display: flex;
@@ -177,7 +183,7 @@ h1, h2, h3, h4, h5, h6 {
     background-blend-mode: overlay; /* Subtle blend */
 }
 
-/* Background Aurora/Glow effects - FINE-TUNED FOR SCREENSHOT LOOK */
+/* Background Aurora/Glow effects - FINE-TUNED FOR SCREENSHOT LOOK (UNCHANGED) */
 .hero-background-aurora-1 {
     position: absolute;
     inset: 0;
@@ -298,29 +304,122 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(79, 70, 229, 0.2);
 }
 
-/* --- Timeline Section (UNCHANGED) --- */
-.timeline-line {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 100%;
-    width: 4px; /* w-1 */
-    background: linear-gradient(180deg, #4F46E5, #8B5CF6); /* from-primary-blue to-accent-purple */
-    border-radius: 9999px; /* rounded-full */
-}
-.timeline-bullet {
+/* --- Timeline Section - Mobile optimized, but now without bullet numbers --- */
+/* The general mobile responsive CSS for stacking elements is still here */
+.timeline-item {
+    flex-direction: column; /* Stack children vertically */
+    align-items: flex-start; /* Align all content to the left */
+    width: 100%;
     position: relative;
-    width: 64px; /* w-16 */
-    height: 64px; /* h-16 */
-    border-radius: 9999px; /* rounded-full */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    z-index: 10;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
-    border: 4px solid #141A2D; /* ring-4 ring-dark-blue-card */
+    padding-left: 4rem; /* Space for the bullet and line */
+    margin-bottom: 3rem; /* More space between items on mobile */
+    margin-top: 0; /* Reset default top margin */
 }
+.timeline-item:last-child {
+    margin-bottom: 0; /* No bottom margin for the last item */
+}
+
+/* Adjust the bullet for mobile */
+.timeline-bullet {
+    position: absolute;
+    left: 0.5rem; /* Position to the left edge of the timeline item */
+    top: 0; /* Align with the top of the content */
+    transform: translateY(0); /* No vertical centering transform on mobile */
+    margin: 0; /* Remove horizontal margin */
+    width: 2.5rem; /* Smaller bullet */
+    height: 2.5rem; /* Smaller bullet */
+    /* Remove font size if there's no text now */
+    font-size: 0; /* Ensures no leftover space from old text */
+}
+
+/* Adjust the vertical line for mobile */
+.timeline-line {
+    left: calc(0.5rem + 1.25rem - 2px); /* Position centered with the smaller bullet */
+    transform: translateX(0); /* Remove desktop transform */
+    height: 100%; /* Spans the full height of its parent */
+    top: 0;
+    width: 4px;
+    z-index: 0; /* Ensure it's behind content */
+}
+
+/* Specific spacing for content blocks on mobile */
+.timeline-item > div:first-child, /* The first content block (card or date) */
+.timeline-item > div:nth-child(3) { /* The second content block */
+    width: 100%; /* Full width for content blocks */
+    padding-right: 0;
+    padding-left: 0;
+    text-align: left; /* All text left-aligned */
+}
+.timeline-item > div:first-child { /* The first content block (card or date) */
+    margin-bottom: 1rem; /* Space below the first content block */
+}
+.timeline-item > div:nth-child(3) { /* The second content block */
+    margin-top: 0; /* Reset default top margin */
+}
+
+
+/* Desktop styles for Timeline (min-width: 768px) - UNCHANGED */
+@media (min-width: 768px) {
+    .timeline-item {
+        flex-direction: row; /* Desktop: back to horizontal layout */
+        align-items: center; /* Vertically center items */
+        padding-left: 0; /* Remove mobile padding */
+        margin-bottom: 0; /* Reset mobile margin */
+        margin-top: 3rem; /* Restore original vertical spacing (my-12 is 3rem) */
+    }
+
+    .timeline-bullet {
+        position: relative; /* Desktop: reset to relative */
+        left: unset;
+        top: unset;
+        transform: none;
+        width: 64px; /* Original size */
+        height: 64px; /* Original size */
+        font-size: 1.25rem; /* Restore original font size if numbers were there, but now it's 0 because they are removed */
+    }
+
+    .timeline-line {
+        left: 50%; /* Desktop: center the line */
+        transform: translateX(-50%);
+        height: 100%;
+        top: 0;
+    }
+
+    /* Restore widths, paddings, and alignments for desktop content blocks */
+    .timeline-item > div:first-child, /* The first div */
+    .timeline-item > div:nth-child(3) { /* The third div */
+        width: 50%;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    /* Original desktop styling for odd items (1st, 3rd in the sequence) */
+    .timeline-item:nth-child(odd) > div:first-child { /* This is the glass card div */
+        padding-right: 2rem; /* pr-8 */
+        text-align: right;
+        order: 1; /* Ensure card is on the left of bullet */
+    }
+    .timeline-item:nth-child(odd) > div:nth-child(3) { /* This is the date div */
+        padding-left: 2rem; /* pl-8 */
+        text-align: left;
+        order: 2; /* Ensure date is on the right of bullet */
+    }
+
+    /* Original desktop styling for even items (2nd, 4th in the sequence) */
+    .timeline-item:nth-child(even) > div:first-child { /* This is the date div from HTML */
+        order: 2; /* Move date to right side of bullet */
+        padding-left: 2rem; /* pl-8 */
+        padding-right: 0; /* Reset */
+        text-align: left;
+    }
+    .timeline-item:nth-child(even) > div:nth-child(3) { /* This is the glass card div from HTML */
+        order: 1; /* Move card to left side of bullet */
+        padding-right: 2rem; /* pr-8 */
+        padding-left: 0; /* Reset */
+        text-align: right;
+    }
+}
+
 
 /* --- Prize Pool Section (UNCHANGED) --- */
 .prize-amount {
@@ -409,12 +508,12 @@ h1, h2, h3, h4, h5, h6 {
 .text-5xl { font-size: 3rem; }
 .text-6xl { font-size: 3.75rem; }
 
-/* Responsive Grid for md:grid-cols-3 */
+/* Responsive Grid for md:grid-cols-3 (UNCHANGED) */
 @media (min-width: 768px) {
     .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-/* Responsive Grid for sm:grid-cols-2 lg:grid-cols-4 */
+/* Responsive Grid for sm:grid-cols-2 lg:grid-cols-4 (UNCHANGED) */
 @media (min-width: 640px) { /* sm: */
     .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -456,8 +555,8 @@ h1, h2, h3, h4, h5, h6 {
 .animate-textGlow { animation: textGlow 3s infinite ease-in-out; }
 .animation-delay-500ms { animation-delay: 0.5s; } /* Specific delay utility */
 
-/* Responsive specific flex ordering for timeline */
-@media (min-width: 768px) {
+/* Responsive specific flex ordering for timeline (UNCHANGED - handled by new timeline CSS) */
+/* @media (min-width: 768px) {
     .md\:order-1 { order: 1; }
     .md\:order-2 { order: 2; }
-}
+} */

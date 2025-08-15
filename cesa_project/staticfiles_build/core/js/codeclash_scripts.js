@@ -1,7 +1,7 @@
 // codeclash_scripts.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    // FAQ Accordion Functionality
+    // FAQ Accordion Functionality (existing code - UNCHANGED)
     document.querySelectorAll('[data-faq-toggle]').forEach(item => {
         item.addEventListener('click', () => {
             const faqId = item.getAttribute('data-faq-toggle');
@@ -27,4 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // --- Navbar Hamburger Menu Functionality (REMOVED) ---
+    // The previous code for hamburger menu is removed as per your request.
 });
