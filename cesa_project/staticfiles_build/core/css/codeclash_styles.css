@@ -1,0 +1,652 @@
+/* --- Base & Global Styles (UNCHANGED) --- */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-family: 'DM Sans', sans-serif; /* Primary font */
+    background-color: #0A0F1F; /* bg-dark-blue-bg */
+    color: #E5E7EB; /* text-light */
+}
+
+/* Custom Scrollbar (UNCHANGED) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #141A2D; /* dark-blue-card */
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: #4F46E5; /* primary-blue */
+    border-radius: 5px;
+    border: 2px solid #141A2D;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #3B82F6; /* A slightly darker blue for hover */
+}
+
+/* Container for max width & centering (UNCHANGED) */
+.container {
+    max-width: 1280px; /* Equivalent to Tailwind's max-w-7xl roughly */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+}
+
+/* Section padding (UNCHANGED) */
+section {
+    padding-top: 5rem; /* py-20 */
+    padding-bottom: 5rem; /* py-20 */
+}
+
+/* Headings & Text Colors (UNCHANGED) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Geist', sans-serif; /* Heading font */
+    color: #E5E7EB; /* text-light */
+}
+
+.text-text-light { color: #E5E7EB; }
+.text-text-muted { color: #A1A1AA; }
+.text-primary-blue { color: #4F46E5; }
+.text-primary-green { color: #10B981; }
+.text-accent-purple { color: #8B5CF6; }
+.text-accent-cyan { color: #06B6D4; }
+.text-white { color: #fff; }
+
+/* Background Colors (UNCHANGED) */
+.bg-dark-blue-bg { background-color: #0A0F1F; }
+.bg-dark-blue-card { background-color: #141A2D; }
+
+/* Font utilities (UNCHANGED) */
+.font-sans { font-family: 'DM Sans', sans-serif; }
+.font-mono { font-family: 'Fira Code', monospace; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+
+
+/* --- Navbar - MOBILE FIRST ADJUSTMENTS (UNCHANGED from previous, assuming this is now desired) --- */
+.navbar {
+    background-color: #0A0F1F;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border-bottom: none;
+    box-shadow: none;
+    padding-top: 1rem; /* Adjusted for mobile */
+    padding-bottom: 1rem; /* Adjusted for mobile */
+    padding-left: 1rem; /* Adjusted for mobile */
+    padding-right: 1rem; /* Adjusted for mobile */
+    position: fixed; /* Ensure it stays at top */
+    width: 100%; /* Full width */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50; /* High z-index to stay on top */
+}
+
+.navbar-brand-text {
+    background-image: linear-gradient(to right, #8B5CF6, #06B6D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 1.125rem; /* text-lg for mobile */
+    white-space: nowrap; /* Prevent "CodeClash 2025" from wrapping */
+}
+
+/* Hamburger Icon - Show on mobile, hide on desktop */
+.hamburger-menu {
+    display: block; /* Show by default (mobile first) */
+    font-size: 1.5rem;
+    color: #E5E7EB;
+    cursor: pointer;
+    z-index: 51; /* Higher than menu container */
+    margin-left: auto; /* Pushes to the right */
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* Container for nav links and register button - MOBILE */
+.navbar-menu-container {
+    display: none; /* Hidden by default on mobile */
+    position: absolute; /* Take over full screen/area below navbar */
+    top: 100%; /* Below the navbar itself */
+    left: 0;
+    width: 100%;
+    background-color: #0A0F1F; /* Same as navbar for seamless transition */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center content horizontally */
+    padding: 1rem 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 49;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition */
+    transform: translateY(-100%); /* Start off-screen upwards */
+    opacity: 0; /* Make it invisible */
+    height: auto; /* Adjust height based on content */
+    max-height: calc(100vh - 64px); /* Max height to fit viewport, assuming 64px navbar height */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+.navbar-menu-container.active {
+    display: flex; /* Show when active via JS */
+    transform: translateY(0); /* Slide into view */
+    opacity: 1; /* Make it visible */
+}
+
+/* Nav links within the menu container - MOBILE */
+.navbar-links {
+    flex-direction: column; /* Stack links vertically */
+    width: 100%; /* Take full width of its parent container */
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0; /* Reset internal padding */
+    list-style: none; /* Remove default list style */
+}
+.navbar-links li {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 0; /* Vertical padding for each link */
+}
+.navbar-links li a {
+    font-size: 1.125rem; /* Larger font for mobile links */
+    display: block; /* Make the whole padding area clickable */
+    text-decoration: none;
+    color: #E5E7EB;
+}
+.navbar-links li a::before { /* Remove bullet point for mobile */
+    content: none !important;
+}
+.navbar-links li a.nav-link::after { /* Hide hover underline for mobile links */
+    display: none;
+}
+
+/* Register button within the menu container - MOBILE */
+.navbar-menu-container .register-button-nav {
+    margin-top: 1.5rem; /* Space below links */
+    width: auto; /* Let button size itself */
+    padding: 0.75rem 1.5rem; /* Adjust button padding */
+    font-size: 1rem; /* Adjust button font size */
+}
+
+
+/* Desktop styles for Navbar (min-width: 768px for md: from Tailwind) */
+@media (min-width: 768px) {
+    .navbar {
+        padding-top: 1.25rem; /* Revert to desktop padding */
+        padding-bottom: 1.25rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .navbar-brand-text {
+        font-size: 1.25rem; /* text-xl */
+    }
+    .hamburger-menu {
+        display: none; /* Hide hamburger on desktop */
+    }
+    .navbar-menu-container {
+        position: static; /* Reset positioning */
+        display: flex; /* Show on desktop */
+        flex-direction: row; /* Horizontal layout */
+        align-items: center;
+        width: auto; /* Auto width */
+        background-color: transparent; /* Transparent background */
+        box-shadow: none;
+        padding: 0;
+        margin-left: auto; /* Push links to center/right */
+        transform: translateY(0); /* Ensure visible */
+        opacity: 1; /* Ensure visible */
+        max-height: none; /* Remove height limit */
+        overflow-y: visible; /* No scrollbar */
+    }
+    .navbar-links {
+        flex-direction: row; /* Horizontal links */
+        width: auto;
+        margin-right: 1.5rem; /* Space between links and button */
+    }
+    .navbar-links li {
+        width: auto;
+        padding: 0;
+    }
+    .navbar-links li a {
+        font-size: 1rem; /* text-base */
+        padding-bottom: 0.25rem; /* Space for underline */
+    }
+    .navbar-links li:not(:first-child) a::before {
+        content: '\2022'; /* Bullet point character */
+    }
+    .navbar-links li a.nav-link::after { /* Show hover underline for desktop links */
+        display: block;
+    }
+    .navbar-menu-container .register-button-nav {
+        margin-top: 0;
+        padding: 0.625rem 1.25rem; /* py-2.5 px-5 */
+        font-size: 0.875rem; /* text-sm */
+    }
+}
+
+
+/* --- Hero Section - REFINED RESPONSIVE ADJUSTMENTS --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Important to hide overflow from background elements */
+    padding: 1rem; /* Add consistent padding for mobile */
+    padding-top: 80px; /* Account for fixed navbar height */
+    background-color: #0A0F1F; /* Base dark blue */
+    background-image: radial-gradient(circle at 15% 20%, rgba(79, 70, 229, 0.1) 0%, transparent 60%),
+                      radial-gradient(circle at 85% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 60%);
+    background-blend-mode: overlay; /* Subtle blend */
+}
+
+/* Background Aurora/Glow effects (UNCHANGED) */
+.hero-background-aurora-1 {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.1) 0%, transparent 35%);
+    opacity: 0.8;
+    filter: blur(48px);
+    animation: auroraMove 25s linear infinite;
+}
+.hero-background-aurora-2 {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 40%);
+    opacity: 0.7;
+    filter: blur(48px);
+    animation: auroraMove 25s linear infinite;
+    animation-delay: 0.5s;
+}
+.hero-background-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+    opacity: 0.5;
+    filter: blur(64px);
+    animation: pulseGlow 10s ease-in-out infinite alternate;
+}
+
+/* CodeClash Title - Adjusted for optimal mobile visibility */
+.codeclash-title {
+    font-size: 2.8rem; /* Default for smaller mobile screens */
+    line-height: 1.1; /* Keep line height tight */
+    font-weight: 800;
+    background-image: linear-gradient(to right, #8B5CF6, #06B6D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    animation: textGlow 3s infinite ease-in-out;
+    margin-bottom: 0.5rem; /* Add a small positive margin */
+    padding: 0 0.5rem; /* Small horizontal padding to ensure fit */
+    white-space: normal; /* Ensure text can wrap if needed, though with these sizes it should fit */
+}
+
+/* Further reduce font size for very narrow screens */
+@media (max-width: 360px) { /* Examples: iPhone SE (1st gen), older small Androids */
+    .codeclash-title { font-size: 2.2rem; }
+}
+@media (min-width: 361px) and (max-width: 480px) { /* Most modern smaller phones */
+    .codeclash-title { font-size: 2.8rem; }
+}
+@media (min-width: 481px) and (max-width: 767px) { /* Larger phones like iPhone Plus, Pixel XL */
+    .codeclash-title { font-size: 3.5rem; }
+}
+
+/* Hero Section Paragraph - Ensure it wraps and has good padding */
+.hero-section p {
+    max-width: 48rem; /* max-w-3xl */
+    color: rgba(229, 231, 235, 0.8);
+    font-size: 0.95rem; /* Slightly smaller for mobile readability */
+    line-height: 1.5; /* Ensure good line spacing */
+    padding: 0 1.5rem; /* Increased horizontal padding for better appearance */
+    margin-top: 1rem; /* Add margin from title */
+    margin-bottom: 2rem; /* Add margin to button */
+}
+
+/* Adjustments for desktop sizes */
+@media (min-width: 768px) {
+    .codeclash-title { font-size: 8rem; margin-bottom: 1.2; padding: 0; } /* md:text-8xl */
+    .hero-section p { font-size: 1.25rem; padding: 0; margin-top: 1.5rem; margin-bottom: 2rem;} /* Revert to desktop size */
+}
+@media (min-width: 1024px) {
+    .codeclash-title { font-size: 10rem; } /* lg:text-[10rem] */
+}
+
+/* Register Button in Hero Section - Adjusted for mobile touch target and fit */
+.register-button {
+    background-color: #10B981; /* primary-green */
+    color: #fff;
+    padding: 0.9rem 2.2rem; /* Slightly adjusted for better mobile touch target */
+    border-radius: 9999px; /* rounded-full */
+    font-size: 1.05rem; /* Slightly smaller font for mobile */
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+    min-width: 180px; /* Ensure a minimum touch target size */
+}
+.register-button:hover {
+    background-color: rgba(16, 185, 129, 0.9);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 20px 25px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+}
+@media (min-width: 768px) {
+    .register-button {
+        padding: 1rem 2.5rem;
+        font-size: 1.25rem;
+    }
+}
+
+
+/* --- Section Titles (UNCHANGED) --- */
+.section-title {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700; /* font-bold */
+    text-align: center;
+    margin-bottom: 3rem; /* mb-12 */
+    background-image: linear-gradient(to right, #4F46E5, #8B5CF6); /* Custom gradient for section title */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+@media (min-width: 768px) { /* md: */
+    .section-title { font-size: 3rem; } /* md:text-5xl */
+}
+
+/* --- Glassmorphism Cards (UNCHANGED) --- */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.05); /* White with opacity for glass */
+    backdrop-filter: blur(15px); /* Blur effect */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem; /* rounded-3xl (adjusted from rounded-2xl to match design) */
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); /* Initial subtle shadow */
+}
+.glass-effect::before { /* Inner glow effect */
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(79, 70, 229, 0.15) 0%, transparent 50%); /* primary-blue */
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: rotate(0deg);
+    z-index: 0;
+}
+.glass-effect:hover::before {
+    opacity: 1;
+    transform: rotate(45deg);
+}
+.glass-effect > * { /* Ensure content is above the pseudo-element glow */
+    position: relative;
+    z-index: 1;
+}
+.glass-effect-hover:hover {
+    transform: translateY(-8px);
+    border-color: #4F46E5; /* primary-blue */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(79, 70, 229, 0.2);
+}
+
+/* --- Timeline Section - Mobile optimized, without bullet numbers (UNCHANGED) --- */
+.timeline-item {
+    flex-direction: column; /* Stack children vertically */
+    align-items: flex-start; /* Align all content to the left */
+    width: 100%;
+    position: relative;
+    padding-left: 4rem; /* Space for the bullet and line */
+    margin-bottom: 3rem; /* More space between items on mobile */
+    margin-top: 0; /* Reset default top margin */
+}
+.timeline-item:last-child {
+    margin-bottom: 0; /* No bottom margin for the last item */
+}
+
+/* Adjust the bullet for mobile */
+.timeline-bullet {
+    position: absolute;
+    left: 0.5rem; /* Position to the left edge of the timeline item */
+    top: 0; /* Align with the top of the content */
+    transform: translateY(0); /* No vertical centering transform on mobile */
+    margin: 0; /* Remove horizontal margin */
+    width: 2.5rem; /* Smaller bullet */
+    height: 2.5rem; /* Smaller bullet */
+    font-size: 0; /* Ensures no leftover space from old text, as numbers are removed */
+}
+
+/* Adjust the vertical line for mobile */
+.timeline-line {
+    left: calc(0.5rem + 1.25rem - 2px); /* Position centered with the smaller bullet */
+    transform: translateX(0); /* Remove desktop transform */
+    height: 100%; /* Spans the full height of its parent */
+    top: 0;
+    width: 4px;
+    z-index: 0; /* Ensure it's behind content */
+}
+
+/* Specific spacing for content blocks on mobile */
+.timeline-item > div:first-child, /* The first content block (card or date) */
+.timeline-item > div:nth-child(3) { /* The second content block */
+    width: 100%; /* Full width for content blocks */
+    padding-right: 0;
+    padding-left: 0;
+    text-align: left; /* All text left-aligned */
+}
+.timeline-item > div:first-child { /* The first content block (card or date) */
+    margin-bottom: 1rem; /* Space below the first content block */
+}
+.timeline-item > div:nth-child(3) { /* The second content block */
+    margin-top: 0; /* Reset default top margin */
+}
+
+
+/* Desktop styles for Timeline (min-width: 768px) - UNCHANGED */
+@media (min-width: 768px) {
+    .timeline-item {
+        flex-direction: row; /* Desktop: back to horizontal layout */
+        align-items: center; /* Vertically center items */
+        padding-left: 0; /* Remove mobile padding */
+        margin-bottom: 0; /* Reset mobile margin */
+        margin-top: 3rem; /* Restore original vertical spacing (my-12 is 3rem) */
+    }
+
+    .timeline-bullet {
+        position: relative; /* Desktop: reset to relative */
+        left: unset;
+        top: unset;
+        transform: none;
+        width: 64px; /* Original size */
+        height: 64px; /* Original size */
+        /* font-size: 1.25rem; */ /* No font size needed as numbers are removed */
+    }
+
+    .timeline-line {
+        left: 50%; /* Desktop: center the line */
+        transform: translateX(-50%);
+        height: 100%;
+        top: 0;
+    }
+
+    /* Restore widths, paddings, and alignments for desktop content blocks */
+    .timeline-item > div:first-child, /* The first div */
+    .timeline-item > div:nth-child(3) { /* The third div */
+        width: 50%;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    /* Original desktop styling for odd items (1st, 3rd in the sequence) */
+    .timeline-item:nth-child(odd) > div:first-child { /* This is the glass card div */
+        padding-right: 2rem; /* pr-8 */
+        text-align: right;
+        order: 1; /* Ensure card is on the left of bullet */
+    }
+    .timeline-item:nth-child(odd) > div:nth-child(3) { /* This is the date div */
+        padding-left: 2rem; /* pl-8 */
+        text-align: left;
+        order: 2; /* Ensure date is on the right of bullet */
+    }
+
+    /* Original desktop styling for even items (2nd, 4th in the sequence) */
+    .timeline-item:nth-child(even) > div:first-child { /* This is the date div from HTML */
+        order: 2; /* Move date to right side of bullet */
+        padding-left: 2rem; /* pl-8 */
+        padding-right: 0; /* Reset */
+        text-align: left;
+    }
+    .timeline-item:nth-child(even) > div:nth-child(3) { /* This is the glass card div from HTML */
+        order: 1; /* Move card to left side of bullet */
+        padding-right: 2rem; /* pr-8 */
+        padding-left: 0; /* Reset */
+        text-align: right;
+    }
+}
+
+
+/* --- Prize Pool Section (UNCHANGED) --- */
+.prize-amount {
+    font-size: 3.75rem; /* text-6xl */
+    font-weight: 700; /* font-bold */
+    color: #10B981; /* primary-green */
+}
+@media (min-width: 768px) { /* md: */
+    .prize-amount { font-size: 4.5rem; } /* md:text-7xl */
+}
+
+
+/* --- Utility Classes (Mimicking Tailwind) (UNCHANGED) --- */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.z-10 { z-index: 10; }
+.z-0 { z-index: 0; }
+.z-50 { z-index: 50; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.flex-shrink-0 { flex-shrink: 0; }
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.gap-8 { gap: 2rem; }
+.space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+.space-y-8 > :not([hidden]) ~ :not([hidden]) { margin-top: 2rem; }
+.space-y-1 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.25rem; }
+.space-x-6 > :not([hidden]) ~ :not([hidden]) { margin-left: 1.5rem; }
+.space-x-10 > :not([hidden]) ~ :not([hidden]) { margin-left: 2.5rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.pr-8 { padding-right: 2rem; }
+.pl-8 { padding-left: 2rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mt-10 { margin-top: 2.5rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-10 { margin-bottom: 2.5rem; }
+.mb-12 { margin-bottom: 3rem; }
+.mb-16 { margin-bottom: 4rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.w-1 { width: 0.25rem; } /* h-full w-1 for timeline line */
+.w-16 { width: 4rem; }
+.h-16 { height: 4rem; }
+.w-48 { width: 12rem; }
+.w-1\/2 { width: 50%; }
+.max-w-lg { max-width: 32rem; }
+.max-w-3xl { max-width: 48rem; }
+.max-w-5xl { max-width: 64rem; }
+.max-w-2xl { max-width: 42rem; }
+.rounded-full { border-radius: 9999px; }
+.list-disc { list-style-type: disc; }
+.list-inside { list-style-position: inside; }
+.hidden { display: none; }
+.block { display: block; }
+.cursor-pointer { cursor: pointer; }
+.transform { transform: var(--tw-transform); }
+.transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+.rotate-180 { --tw-rotate: 180deg; transform: rotate(var(--tw-rotate)); }
+.rotate-0 { --tw-rotate: 0deg; transform: rotate(var(--tw-rotate)); }
+.leading-tight { line-height: 1.2; }
+.object-contain { object-fit: contain; }
+.text-sm { font-size: 0.875rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+.text-5xl { font-size: 3rem; }
+.text-6xl { font-size: 3.75rem; }
+
+/* Responsive Grid for md:grid-cols-3 (UNCHANGED) */
+@media (min-width: 768px) {
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Responsive Grid for sm:grid-cols-2 lg:grid-cols-4 (UNCHANGED) */
+@media (min-width: 640px) { /* sm: */
+    .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) { /* lg: */
+    .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* --- Keyframes & Animations (UNCHANGED) --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(79, 70, 229, 0.4), 0 0 20px rgba(79, 70, 229, 0.2); }
+  50% { box-shadow: 0 0 15px rgba(79, 70, 229, 0.6), 0 0 30px rgba(79, 70, 229, 0.3); }
+}
+@keyframes auroraMove {
+  0% { background-position: 0% 0%, 100% 100%; }
+  100% { background-position: 100% 100%, 0% 0%; }
+}
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 10px rgba(139, 92, 246, 0.7), 0 0 20px rgba(6, 182, 212, 0.5); }
+  50% { text-shadow: 0 0 15px rgba(139, 92, 246, 0.9), 0 0 30px rgba(6, 182, 212, 0.7); }
+}
+
+.animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+.animate-slideInLeft { animation: slideInLeft 0.8s ease-out forwards; }
+.animate-slideInRight { animation: slideInRight 0.8s ease-out forwards; }
+.animate-pulseGlow { animation: pulseGlow 2s infinite ease-in-out; }
+.animate-auroraMove { animation: auroraMove 25s linear infinite; }
+.animate-textGlow { animation: textGlow 3s infinite ease-in-out; }
+.animation-delay-500ms { animation-delay: 0.5s; } /* Specific delay utility */
