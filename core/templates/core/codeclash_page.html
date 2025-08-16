@@ -30,7 +30,7 @@
       href="{% static 'core/css/codeclash_styles.css' %}"
     />
 
-    <!--  Added responsive styles -->
+    <!--  Added responsive styles and animations -->
     <style>
       /* Mobile Navigation Styles */
       .mobile-menu-toggle {
@@ -246,6 +246,95 @@
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
         transform: translateY(-2px) scale(1.02); /* Slight lift and scale */
       }
+
+      /* Background Glow Elements - Example styles if not in codeclash_styles.css */
+      .hero-background-aurora-1,
+      .hero-background-aurora-2,
+      .hero-background-glow {
+        position: absolute;
+        border-radius: 50%; /* Make them circular/oval glows */
+        filter: blur(80px); /* Apply blur for soft edges */
+        opacity: 0.6; /* Initial opacity */
+        z-index: 0; /* Place them behind content */
+      }
+
+      .hero-background-aurora-1 {
+        background: radial-gradient(circle, #a78bfa, transparent); /* Soft purple */
+        width: 500px;
+        height: 500px;
+        top: -100px;
+        left: -100px;
+      }
+
+      .hero-background-aurora-2 {
+        background: radial-gradient(circle, #3b82f6, transparent); /* Soft blue */
+        width: 600px;
+        height: 600px;
+        bottom: -150px;
+        right: -150px;
+      }
+
+      .hero-background-glow {
+        background: radial-gradient(circle, #8b5cf6, transparent); /* Central brighter purple */
+        width: 400px;
+        height: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center it */
+      }
+
+      /* Keyframe Animations for Background */
+      @keyframes pulseGlow {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.05);
+          opacity: 0.9;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.6;
+        }
+      }
+
+      @keyframes drift1 {
+        0% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(30px, 20px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      @keyframes drift2 {
+        0% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(-25px, -15px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      /* Applying animations to background elements */
+      .hero-background-glow {
+        animation: pulseGlow 4s ease-in-out infinite alternate;
+      }
+
+      .hero-background-aurora-1 {
+        animation: drift1 8s ease-in-out infinite alternate;
+      }
+
+      .hero-background-aurora-2 {
+        animation: drift2 9s ease-in-out infinite alternate;
+      }
     </style>
   </head>
   <body>
@@ -421,6 +510,8 @@
                     class="list-disc list-inside text-text-muted text-sm space-y-1"
                   >
                     <li>Early bird pricing</li>
+                    <li>Team formation</li>
+                    <li>Discord access</li>
                   </ul>
                 </div>
               </div>
@@ -461,7 +552,7 @@
                       participants can join the competition.
                     </li>
                     <li>ID verification</li>
-                    <li>Contestant Verification</li>
+                    <li>Team verification</li>
                   </ul>
                 </div>
               </div>
@@ -475,13 +566,13 @@
                   <h3 class="text-xl font-semibold text-primary-blue mb-2">
                     Phase 3: Online Qualifying Round
                   </h3>
-                  <p class="text-sm text-text-muted mb-2">12:00 PM - 6:00 PM</p>
+                  <p class="text-sm text-text-muted mb-2">2:00 PM - 5:00 PM</p>
                   <ul
                     class="list-disc list-inside text-text-muted text-sm space-y-1"
                   >
                     <li>Algorithmic challenges and problem-solving.</li>
                     <li>Top performers advance.</li>
-                    <li>50 Minutes duration</li>
+                    <li>3 hours duration</li>
                     <li>Final round announcement</li>
                   </ul>
                 </div>
