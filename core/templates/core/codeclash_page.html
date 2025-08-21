@@ -30,7 +30,7 @@
       href="{% static 'core/css/codeclash_styles.css' %}"
     />
 
-    <!--  Added responsive styles and animations -->
+    <!--  Added responsive styles and animations and NEW styles for 'Powered by Unstop' -->
     <style>
       /* Mobile Navigation Styles */
       .mobile-menu-toggle {
@@ -159,9 +159,15 @@
           font-size: 3rem !important;
         }
 
-        .hero-section p {
-          font-size: 1rem !important;
-          padding: 0 20px;
+        /* Adjusted for removed line */
+        .hero-section p.text-text-light\/80 {
+          display: none; /* Hide the removed line content */
+        }
+
+        .hero-section .powered-by-unstop-text {
+            font-size: 2.2rem !important; /* Adjusted for mobile */
+            margin-top: 1.2rem !important;
+            margin-bottom: 2.2rem !important;
         }
 
         /* Grid Adjustments */
@@ -205,6 +211,10 @@
       @media (max-width: 480px) {
         .codeclash-title {
           font-size: 2.5rem !important;
+        }
+
+        .powered-by-unstop-text {
+            font-size: 1.8rem !important; /* Further adjust for smaller mobile */
         }
 
         .section-title {
@@ -335,6 +345,40 @@
       .hero-background-aurora-2 {
         animation: drift2 9s ease-in-out infinite alternate;
       }
+
+      /* UPDATED: Styles for "Powered by Unstop" for more design and bigger text */
+      .powered-by-unstop-text {
+        font-size: 3.5rem; /* Significantly larger */
+        font-weight: 800; /* Extra bold */
+        color: #8EE0F4; /* Light blue color */
+        text-shadow: 0 0 20px rgba(142, 224, 244, 1), /* Stronger, tighter glow */
+                     0 0 40px rgba(142, 224, 244, 0.8),
+                     0 0 60px rgba(142, 224, 244, 0.6); /* Added more layers for a richer glow */
+        margin-top: 1.8rem; /* Adjusted spacing */
+        margin-bottom: 2.8rem; /* Adjusted spacing */
+        letter-spacing: 0.15em; /* Increased letter spacing for emphasis */
+        /* Optional: Add a slight transform for a subtle effect */
+        transform: scale(1);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .powered-by-unstop-text:hover {
+        transform: scale(1.03); /* Subtle scale effect on hover */
+      }
+
+      /* Media query adjustments for "Powered by Unstop" */
+      @media (max-width: 768px) {
+        .powered-by-unstop-text {
+            font-size: 2.5rem !important; /* Adjusted for mobile */
+            margin-top: 1.2rem !important;
+            margin-bottom: 2.2rem !important;
+        }
+      }
+      @media (max-width: 480px) {
+        .powered-by-unstop-text {
+            font-size: 2rem !important; /* Further adjust for smaller mobile */
+        }
+      }
     </style>
   </head>
   <body>
@@ -404,11 +448,16 @@
 
         <div class="relative z-10 flex flex-col items-center space-y-6">
           <h1 class="codeclash-title">CodeClash</h1>
-          <!-- 2025 1.0 text is removed -->
+          <!-- "Powered by Unstop" text with custom styling -->
+          <p class="powered-by-unstop-text">Powered by Unstop</p>
+
+          <!-- REMOVED: The Ultimate State-Level Solo Coding Competition. Where Code Meets Innovation. -->
+          <!--
           <p class="max-w-3xl text-lg md:text-xl text-text-light/80 mt-4 mb-8">
             The Ultimate State-Level Solo Coding Competition. Where Code Meets
             Innovation.
           </p>
+          -->
 
           <!-- Register Button -->
           <a
