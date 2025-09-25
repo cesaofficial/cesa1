@@ -5,38 +5,6 @@
 <div class="container section events-page-section"> {# ADD THIS CLASS HERE #}
     <h1 class="section-title">Our Events</h1>
 
-    <div class="row gy-4">
-        <!-- HARDCODED: Code Clash Event Card -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="event-card glass-card"> {# Reusing glass-card styles for consistency #}
-                {# Make sure you have a poster image at core/static/core/images/codeclash-poster.jpg #}
-                <img src="{% static 'core/images/event.jpg' %}" class="event-card-image" alt="CodeClash 2025 Poster">
-                <div class="event-card-body">
-                    <h4 class="event-card-title">CodeClash 2025</h4>
-                    <p class="event-card-date">September 15, 2025</p>
-                    <p class="event-card-description">The ultimate state-level solo coding competition. Where code meets innovation. Get ready to battle and showcase your skills!</p>
-                    {# IMPORTANT: Link to the Django URL name that serves your React app #}
-                    <a href="{% url 'codeclash_event_page' %}" class="btn btn-primary mt-auto register-button">View Event</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- DYNAMIC: Loop through other events from your Django view -->
-        {% for event in events %}
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="event-card glass-card">
-                {% if event.image %}
-                <img src="{{ event.image.url }}" class="event-card-image" alt="{{ event.title }} Poster">
-                {% endif %}
-                <div class="event-card-body">
-                    <h4 class="event-card-title">{{ event.title }}</h4>
-                    <p class="event-card-date">{{ event.date|date:"F d, Y" }}</p>
-                    <p class="event-card-description">{{ event.description }}</p>
-                    <a href="#" class="btn btn-outline-primary mt-auto learn-more-button">Learn More</a>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
 
         <!-- Message for no dynamic events (will appear after Code Clash if 'events' is empty) -->
         {% if not events %}
